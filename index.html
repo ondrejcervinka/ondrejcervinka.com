@@ -6,10 +6,17 @@
   <title>Ondrej Cervinka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Drifting background blobs -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+  </div>
 
   <div class="cursor" id="cursor"></div>
 
@@ -21,165 +28,169 @@
     </nav>
   </header>
 
-  <div class="layout">
+  <section class="hero">
+    <p class="hero-label">3D Artist &amp; Visual Director</p>
+    <h1 class="hero-title">
+      <span class="hero-line"><span>Precision mixed</span></span>
+      <span class="hero-line"><span class="gradient-text">with imagination.</span></span>
+    </h1>
+    <p class="hero-sub">Material pushed to its limit — for brands that demand more.</p>
+  </section>
 
-    <aside class="sidebar">
-      <div class="sidebar-group">
-        <p class="sidebar-label">New</p>
-        <ul class="sidebar-list">
-          <li><a href="#spectral">Spectral | Eyewear</a></li>
-          <li><a href="#hublot">Hublot | Big Bang</a></li>
-          <li><a href="#nike">Nike | Air Max TN</a></li>
-          <li><a href="#pantene">Pantene | Pro-V</a></li>
-        </ul>
-      </div>
-      <div class="sidebar-group">
-        <p class="sidebar-label">Selected</p>
-        <ul class="sidebar-list">
-          <li><a href="#neva">NEVA | Architecture</a></li>
-          <li><a href="#loreal">L'Oréal | Visual</a></li>
-          <li><a href="#cloth">024 | Fabric</a></li>
-          <li><a href="#glass">Glass Study</a></li>
-          <li><a href="#aque">Aque | Skincare</a></li>
-          <li><a href="#mineral">Mineral</a></li>
-          <li><a href="#hair">Hair | Motion</a></li>
-          <li><a href="#voile">Voile | Abstract</a></li>
-          <li><a href="#carbon">Carbon | Wave</a></li>
-        </ul>
-      </div>
-    </aside>
+  <main class="grid">
 
-    <main class="grid">
+    <div class="col col--left">
 
-      <!-- Left column -->
-      <div class="col col--left">
+      <article class="project reveal" id="spectral"
+        style="--glow-a:#ff2d78; --glow-b:#7c3aed;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/001.png" alt="Spectral Eyewear">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Spectral | Eyewear</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="spectral">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/001.png" alt="Spectral Eyewear">
-            </figure>
-            <p class="project-caption">Spectral | Eyewear</p>
-          </a>
-        </article>
+      <article class="project reveal" id="hublot"
+        style="--glow-a:#ff4500; --glow-b:#ff0055;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Hublot | Big Bang</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="hublot">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang">
-            </figure>
-            <p class="project-caption">Hublot | Big Bang</p>
-          </a>
-        </article>
+      <article class="project reveal" id="neva"
+        style="--glow-a:#0066ff; --glow-b:#00d4ff;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/NEVA_SH091_v10_0063.png" alt="NEVA Architecture">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">NEVA | Architecture</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="neva">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/NEVA_SH091_v10_0063.png" alt="NEVA Architecture">
-            </figure>
-            <p class="project-caption">NEVA | Architecture</p>
-          </a>
-        </article>
+      <article class="project reveal" id="cloth"
+        style="--glow-a:#8b5cf6; --glow-b:#ec4899;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/024_FN_cloth_001.png" alt="024 Fabric">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">024 | Fabric</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="cloth">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/024_FN_cloth_001.png" alt="024 Fabric">
-            </figure>
-            <p class="project-caption">024 | Fabric</p>
-          </a>
-        </article>
+      <article class="project reveal" id="mineral"
+        style="--glow-a:#064e3b; --glow-b:#06d6ff;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/imageasd.png" alt="Mineral Study">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Mineral Study</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="mineral">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/imageasd.png" alt="Mineral Study">
-            </figure>
-            <p class="project-caption">Mineral Study</p>
-          </a>
-        </article>
+      <article class="project reveal" id="hair"
+        style="--glow-a:#7c3aed; --glow-b:#f472b6;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/imagehairs.png" alt="Hair Motion">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Hair | Motion</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="hair">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/imagehairs.png" alt="Hair Motion">
-            </figure>
-            <p class="project-caption">Hair | Motion</p>
-          </a>
-        </article>
+    </div>
 
-      </div>
+    <div class="col col--right">
 
-      <!-- Right column — offset down -->
-      <div class="col col--right">
+      <article class="project reveal" id="nike"
+        style="--glow-a:#1d4ed8; --glow-b:#06d6ff;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/image_shoe.png" alt="Nike Air Max TN">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Nike | Air Max TN</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="nike">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/image_shoe.png" alt="Nike Air Max TN">
-            </figure>
-            <p class="project-caption">Nike | Air Max TN</p>
-          </a>
-        </article>
+      <article class="project reveal" id="loreal"
+        style="--glow-a:#f59e0b; --glow-b:#ef4444;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/visual01_v006.jpg" alt="L'Oréal Visual">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">L'Oréal | Visual 01</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="loreal">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/visual01_v006.jpg" alt="L'Oréal Visual">
-            </figure>
-            <p class="project-caption">L'Oréal | Visual 01</p>
-          </a>
-        </article>
+      <article class="project reveal" id="pantene"
+        style="--glow-a:#f472b6; --glow-b:#818cf8;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/pantene_arsthanea_00086512.jpg" alt="Pantene Pro-V">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Pantene | Pro-V Miracle</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="pantene">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/pantene_arsthanea_00086512.jpg" alt="Pantene Pro-V">
-            </figure>
-            <p class="project-caption">Pantene | Pro-V Miracle</p>
-          </a>
-        </article>
+      <article class="project reveal" id="glass"
+        style="--glow-a:#bae6fd; --glow-b:#6366f1;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/v003_00015.png" alt="Glass Study">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Glass Study</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="glass">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/v003_00015.png" alt="Glass Study">
-            </figure>
-            <p class="project-caption">Glass Study</p>
-          </a>
-        </article>
+      <article class="project reveal" id="aque"
+        style="--glow-a:#6d28d9; --glow-b:#2563eb;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/5c2061c6-1378-48ef-9b0b-b855d240991e_rw_1920.jpg" alt="Aque Skincare">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Aque | Skincare</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="aque">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/5c2061c6-1378-48ef-9b0b-b855d240991e_rw_1920.jpg" alt="Aque Skincare">
-            </figure>
-            <p class="project-caption">Aque | Skincare</p>
-          </a>
-        </article>
+      <article class="project reveal" id="voile"
+        style="--glow-a:#0369a1; --glow-b:#7c3aed;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/0119.jpg" alt="Voile Abstract">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Voile | Abstract</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="carbon">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/image111.png" alt="Carbon Wave">
-            </figure>
-            <p class="project-caption">Carbon | Wave</p>
-          </a>
-        </article>
+      <article class="project reveal" id="carbon"
+        style="--glow-a:#1e293b; --glow-b:#6366f1;">
+        <a href="#">
+          <figure class="project-media">
+            <img src="portfolio-materials/image111.png" alt="Carbon Wave">
+            <div class="project-glow"></div>
+          </figure>
+          <p class="project-caption">Carbon | Wave</p>
+        </a>
+      </article>
 
-        <article class="project reveal" id="voile">
-          <a href="#">
-            <figure class="project-media">
-              <img src="portfolio-materials/0119.jpg" alt="Voile Abstract">
-            </figure>
-            <p class="project-caption">Voile | Abstract</p>
-          </a>
-        </article>
+    </div>
 
-      </div>
-
-    </main>
-  </div>
+  </main>
 
   <footer class="footer">
     <span>ondrejcervinka.com</span>

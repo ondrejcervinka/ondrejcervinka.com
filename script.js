@@ -13,15 +13,27 @@ if (cursor) {
   });
 }
 
+/* ─── Blob Parallax ─────────────────────────────────────── */
+const blobs = document.querySelectorAll('.blob');
+
+if (blobs.length) {
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth  - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+
+    blobs.forEach((blob, i) => {
+      const depth = (i + 1) * 22;
+      blob.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+    });
+  });
+}
+
 /* ─── Scroll Reveal ─────────────────────────────────────── */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      // Slight stagger based on position in viewport batch
-      const delay = (i % 2) * 80;
-      setTimeout(() => {
-        entry.target.classList.add('in-view');
-      }, delay);
+      const delay = (i % 2) * 100;
+      setTimeout(() => entry.target.classList.add('in-view'), delay);
       revealObserver.unobserve(entry.target);
     }
   });
@@ -30,6 +42,4 @@ const revealObserver = new IntersectionObserver((entries) => {
   rootMargin: '0px 0px -40px 0px'
 });
 
-document.querySelectorAll('.reveal, .intro-text').forEach(el => {
-  revealObserver.observe(el);
-});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));

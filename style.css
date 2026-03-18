@@ -6,12 +6,10 @@
 }
 
 :root {
-  --bg: #eee9d8;
+  --bg: #f0ede6;
   --fg: #0f0f0d;
-  --navy: #1c2040;
-  --sand: #c4bfaf;
-  --muted: #909090;
-  --border: #d6d1c4;
+  --muted: #9a9690;
+  --border: #dedad2;
   --header-h: 52px;
   --sidebar-w: 210px;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -58,7 +56,7 @@ figure {
   left: 0;
   width: 8px;
   height: 8px;
-  background: var(--navy);
+  background: var(--fg);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -74,7 +72,7 @@ figure {
   width: 44px;
   height: 44px;
   background: transparent;
-  border: 1px solid var(--navy);
+  border: 1px solid var(--fg);
 }
 
 /* ─── Header ────────────────────────────────────────────── */
@@ -95,14 +93,11 @@ figure {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo-img {
-  height: 36px;
-  width: auto;
-  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .header-nav {
@@ -176,7 +171,7 @@ figure {
   bottom: -1px;
   width: 0;
   height: 1px;
-  background: var(--navy);
+  background: var(--fg);
   transition: width 0.25s ease;
 }
 
@@ -266,7 +261,7 @@ figure {
 
 .project-media {
   overflow: hidden;
-  background: var(--sand);
+  background: #dedad2;
   line-height: 0;
   position: relative;
 }
@@ -400,7 +395,7 @@ figure {
   bottom: -1px;
   width: 0;
   height: 1px;
-  background: var(--navy);
+  background: var(--fg);
   transition: width 0.25s ease;
 }
 

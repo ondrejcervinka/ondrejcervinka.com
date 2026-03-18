@@ -6,10 +6,12 @@
   <title>About — Ondrej Cervinka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div class="cursor" id="cursor"></div>
 
   <header class="header">
     <a href="index.html" class="logo">OC</a>
@@ -21,16 +23,21 @@
 
   <div class="about-layout">
 
-    <div class="about-left">
-      <p class="about-tag">Ondrej Cervinka<br>3D Artist &amp; Visual Director</p>
+    <div class="about-sidebar">
+      <p class="about-tag">
+        Ondrej Cervinka<br>
+        3D Artist<br>
+        Visual Director<br>
+        Based in Europe
+      </p>
     </div>
 
-    <div class="about-right">
-      <p class="about-headline">
-        Crafting visual worlds where<br>
-        material, light, and narrative<br>
-        become one.
-      </p>
+    <div class="about-body-wrap">
+
+      <h1 class="about-headline">
+        I make things look better<br>
+        than real.
+      </h1>
 
       <p class="about-body">
         I work at the intersection of CGI, product visualization, and creative direction —
@@ -45,7 +52,6 @@
       </p>
       <p class="about-body">
         Available for campaigns, product visualization, brand films, and creative direction.
-        Currently based in Europe, working globally.
       </p>
 
       <div class="about-info">
@@ -55,7 +61,7 @@
           <p>CGI Campaign</p>
           <p>Motion Design</p>
           <p>Creative Direction</p>
-          <p>Product Photography</p>
+          <p>Product Visual</p>
         </div>
         <div class="about-info-col">
           <p class="about-info-label">Clients</p>
@@ -72,8 +78,8 @@
           <p><a href="#">LinkedIn</a></p>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 
   <footer class="footer">
@@ -81,5 +87,6 @@
     <span>© 2026</span>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

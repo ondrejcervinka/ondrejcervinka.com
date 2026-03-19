@@ -14,22 +14,31 @@ if (cursor) {
 }
 
 /* ─── Scroll Reveal ─────────────────────────────────────── */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      // Slight stagger based on position in viewport batch
-      const delay = (i % 2) * 80;
-      setTimeout(() => {
-        entry.target.classList.add('in-view');
-      }, delay);
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.07,
-  rootMargin: '0px 0px -40px 0px'
-});
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.querySelectorAll('.reveal, .intro-text').forEach(el => {
-  revealObserver.observe(el);
-});
+if (prefersReducedMotion) {
+  // Skip animation — immediately mark all reveal elements as visible
+  document.querySelectorAll('.reveal, .intro-text').forEach(el => {
+    el.classList.add('in-view');
+  });
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Slight stagger based on position in viewport batch
+        const delay = (i % 2) * 80;
+        setTimeout(() => {
+          entry.target.classList.add('in-view');
+        }, delay);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.07,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.reveal, .intro-text').forEach(el => {
+    revealObserver.observe(el);
+  });
+}

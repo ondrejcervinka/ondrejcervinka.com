@@ -133,10 +133,18 @@ figure {
   margin-top: var(--header-h);
   display: flex;
   align-items: baseline;
-  gap: 20px;
+  gap: 24px;
   padding: 24px 28px;
   border-bottom: 1px solid var(--border);
   animation: fadeIn 0.8s 0.1s ease both;
+}
+
+.intro-name {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .intro-tagline {
@@ -149,9 +157,13 @@ figure {
 }
 
 .intro-meta {
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--muted);
   white-space: nowrap;
+  margin-left: auto;
 }
 
 /* ─── Mobile project index ──────────────────────────────── */
@@ -222,7 +234,7 @@ figure {
 }
 
 .sidebar-list a:hover {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 /* ─── Grid ──────────────────────────────────────────────── */
@@ -281,9 +293,25 @@ figure {
 }
 
 .project-caption {
-  font-size: 15px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
   padding-top: 10px;
+}
+
+.project-title {
+  font-size: 15px;
   color: var(--fg);
+}
+
+.project-meta {
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 /* ─── Footer ────────────────────────────────────────────── */
@@ -418,12 +446,13 @@ figure {
 
   .intro {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     padding: 20px 20px;
   }
 
   .intro-meta {
     white-space: normal;
+    margin-left: 0;
   }
 
   /* Mobile project index — horizontal scrollable nav */

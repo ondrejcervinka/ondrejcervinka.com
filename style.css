@@ -8,7 +8,7 @@
 :root {
   --bg:        #fafaf8;
   --fg:        #0f0f0d;
-  --muted:     #9a9690;
+  --muted:     #767370;   /* raised from #9a9690 — meets 4.5:1 on --bg */
   --border:    #dedad2;
   --header-h:  52px;
   --footer-h:  53px;
@@ -215,6 +215,7 @@ figure {
   font-size: 15px;
   line-height: 1.45;
   position: relative;
+  opacity: 0.65;   /* dimmed by default so hover to full opacity is meaningful */
   transition: opacity 0.2s;
 }
 
@@ -233,7 +234,8 @@ figure {
   width: 100%;
 }
 
-.sidebar-list a:hover {
+.sidebar-list a:hover,
+.sidebar-list a:focus-visible {
   opacity: 1;
 }
 
@@ -298,6 +300,7 @@ figure {
   justify-content: space-between;
   gap: 12px;
   padding-top: 10px;
+  padding-bottom: 2px;   /* prevents captions feeling clipped before next image */
 }
 
 .project-title {
@@ -367,7 +370,7 @@ figure {
   font-weight: 300;
   color: var(--fg);
   margin-bottom: 20px;
-  max-width: 540px;
+  max-width: 65ch;   /* ~65 characters — optimal reading line length */
 }
 
 .about-info {
@@ -435,6 +438,13 @@ figure {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Mid-range: sidebar gone, reduce stagger so right col isn't buried ── */
+@media (max-width: 1100px) and (min-width: 901px) {
+  :root {
+    --col-stagger: 120px;
   }
 }
 

@@ -88,16 +88,21 @@ body {
 
 /* ─── Chapter ────────────────────────────────────────────────────────────────── */
 .chapter {
+  display: flex;
+  flex-direction: column;
+  padding: 64px 0;
+  gap: 40px;
+}
+
+/* Top row: gutter label | description */
+.chapter-top {
   display: grid;
   grid-template-columns: var(--gutter) 1fr;
-  grid-template-rows: auto auto auto;
   column-gap: 40px;
-  padding: 64px 0;
+  align-items: start;
 }
 
 .chapter-head {
-  grid-column: 1;
-  grid-row: 1 / 4;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -121,25 +126,21 @@ body {
 }
 
 .chapter-desc {
-  grid-column: 2;
-  grid-row: 1;
   font-size: clamp(18px, 2.2vw, 26px);
   font-weight: 300;
   line-height: 1.4;
   letter-spacing: -0.015em;
   color: var(--ink);
   max-width: 640px;
-  margin-bottom: 40px;
 }
 
+/* Image grid — full width, no gutter */
 .chapter-grid {
-  grid-column: 2;
   display: grid;
   gap: var(--gap);
 }
 
-.chapter-grid:nth-of-type(1) { grid-row: 2; }
-.chapter-grid:nth-of-type(2) { grid-row: 3; margin-top: var(--gap); }
+.chapter-grid--gap { margin-top: var(--gap); }
 
 .chapter-grid--full { grid-template-columns: 1fr; }
 .chapter-grid--two  { grid-template-columns: 1fr 1fr; }
@@ -234,13 +235,14 @@ figcaption {
   }
 
   .hero { padding-top: 56px; padding-bottom: 48px; }
-  .chapter { column-gap: 24px; padding: 48px 0; }
+  .chapter { padding: 48px 0; gap: 32px; }
+  .chapter-top { column-gap: 24px; }
 }
 
 @media (max-width: 640px) {
   :root { --pad: 20px; }
 
-  .chapter {
+  .chapter-top {
     display: block;
   }
 
@@ -249,12 +251,11 @@ figcaption {
     flex-direction: row;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
-  .chapter-desc { font-size: 18px; margin-bottom: 24px; max-width: 100%; }
+  .chapter-desc { font-size: 18px; max-width: 100%; }
   .chapter-grid--two { grid-template-columns: 1fr; }
-  .chapter-grid:nth-of-type(2) { margin-top: var(--gap); }
 
   .footer { flex-direction: column; gap: 16px; text-align: center; }
   .footer-links { flex-direction: column; gap: 8px; align-items: center; }

@@ -148,6 +148,15 @@ body {
 /* ─── Figure ─────────────────────────────────────────────────────────────────── */
 .fig {
   cursor: pointer;
+  transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter   0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: drop-shadow(0px 0px 0px rgba(0,0,0,0));
+}
+
+.fig:hover {
+  transform: translateY(-8px);
+  filter: drop-shadow(0px 16px 32px rgba(0,0,0,0.13));
 }
 
 .fig .fig-img-wrap {

@@ -232,10 +232,37 @@
   </footer>
 
   <script>
+    // Sticky header border
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
+
+    // Image parallax on hover
+    const SCALE = 1.07;
+    const SHIFT = 14; // max px movement at card edges
+
+    document.querySelectorAll('.fig').forEach(fig => {
+      const img = fig.querySelector('img');
+
+      fig.addEventListener('mouseenter', () => {
+        img.style.transition = 'transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        img.style.transform = `scale(${SCALE}) translate(0px, 0px)`;
+      });
+
+      fig.addEventListener('mousemove', e => {
+        const rect = fig.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width  - 0.5) * SHIFT * 2;
+        const y = ((e.clientY - rect.top)  / rect.height - 0.5) * SHIFT * 2;
+        img.style.transition = 'transform 0.12s ease-out';
+        img.style.transform = `scale(${SCALE}) translate(${x}px, ${y}px)`;
+      });
+
+      fig.addEventListener('mouseleave', () => {
+        img.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        img.style.transform = 'scale(1) translate(0px, 0px)';
+      });
+    });
   </script>
 </body>
 </html>

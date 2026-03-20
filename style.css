@@ -11,7 +11,7 @@ a { color: inherit; text-decoration: none; }
   --line:     #d8d6d2;
 
   --font:     'Inter', system-ui, sans-serif;
-  --font-serif: 'Lora', Georgia, serif;
+  --font-serif: 'Noto Serif', Georgia, serif;
   --gap:      24px;
   --gutter:   140px;
   --max:      1240px;

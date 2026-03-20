@@ -94,26 +94,16 @@ body {
   gap: 40px;
 }
 
-/* Top row: gutter label | description */
-.chapter-top {
-  display: grid;
-  grid-template-columns: var(--gutter) 1fr;
-  column-gap: 40px;
-  align-items: start;
-}
-
 .chapter-head {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-top: 4px;
+  align-items: center;
+  gap: 12px;
 }
 
 .chapter-arrow {
   font-size: 13px;
   font-weight: 400;
   color: var(--muted);
-  display: block;
 }
 
 .chapter-client {
@@ -122,22 +112,22 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  line-height: 1.5;
 }
 
 .chapter-desc {
-  font-size: clamp(18px, 2.2vw, 26px);
+  font-size: clamp(16px, 1.8vw, 22px);
   font-weight: 300;
-  line-height: 1.4;
-  letter-spacing: -0.015em;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
   color: var(--ink);
   max-width: 640px;
 }
 
-/* Image grid — full width, no gutter */
+/* Image grids */
 .chapter-grid {
   display: grid;
   gap: var(--gap);
+  align-items: start;
 }
 
 .chapter-grid--gap { margin-top: var(--gap); }
@@ -254,26 +244,13 @@ figcaption {
 
   .hero { padding-top: 56px; padding-bottom: 48px; }
   .chapter { padding: 48px 0; gap: 32px; }
-  .chapter-top { column-gap: 24px; }
 }
 
 @media (max-width: 640px) {
   :root { --pad: 20px; }
 
-  .chapter-top {
-    display: block;
-  }
-
-  .chapter-head {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .chapter-desc { font-size: 18px; max-width: 100%; }
-  .chapter-grid--two { grid-template-columns: 1fr; }
+  .chapter-desc { font-size: 16px; max-width: 100%; }
+  .chapter-grid--two, .chapter-grid--three { grid-template-columns: 1fr; }
 
   .footer { flex-direction: column; gap: 16px; text-align: center; }
   .footer-links { flex-direction: column; gap: 8px; align-items: center; }

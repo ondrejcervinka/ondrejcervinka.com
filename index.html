@@ -237,35 +237,6 @@
     }, { passive: true });
 
     // Image parallax on hover
-    const SHIFT = 6;
-    const SCALE = 1.06;
-
-    function pan(e, rect) {
-      const x = ((e.clientX - rect.left) / rect.width  - 0.5) * SHIFT * 2;
-      const y = ((e.clientY - rect.top)  / rect.height - 0.5) * SHIFT * 2;
-      return { x, y };
-    }
-
-    document.querySelectorAll('.fig').forEach(fig => {
-      const img = fig.querySelector('img');
-
-      fig.addEventListener('mouseenter', e => {
-        const { x, y } = pan(e, fig.getBoundingClientRect());
-        img.style.transition = 'none';
-        img.style.transform = `scale(${SCALE}) translate(${x}px, ${y}px)`;
-      });
-
-      fig.addEventListener('mousemove', e => {
-        const { x, y } = pan(e, fig.getBoundingClientRect());
-        img.style.transition = 'transform 0.12s ease-out';
-        img.style.transform = `scale(${SCALE}) translate(${x}px, ${y}px)`;
-      });
-
-      fig.addEventListener('mouseleave', () => {
-        img.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        img.style.transform = `scale(${SCALE}) translate(0px, 0px)`;
-      });
-    });
   </script>
 </body>
 </html>

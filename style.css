@@ -153,9 +153,7 @@ body {
 }
 
 /* ─── Figure ─────────────────────────────────────────────────────────────────── */
-.fig {
-  cursor: default;
-}
+.fig {}
 
 .fig .fig-img-wrap {
   overflow: hidden;
@@ -166,8 +164,6 @@ body {
   aspect-ratio: 4/3;
   object-fit: cover;
   background: var(--line);
-  transform: scale(1.06) translate(0px, 0px);
-  will-change: transform;
 }
 
 .chapter-grid--full .fig img {

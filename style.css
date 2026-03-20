@@ -142,8 +142,9 @@ body {
 
 .chapter-grid--gap { margin-top: var(--gap); }
 
-.chapter-grid--full { grid-template-columns: 1fr; }
-.chapter-grid--two  { grid-template-columns: 1fr 1fr; }
+.chapter-grid--full  { grid-template-columns: 1fr; }
+.chapter-grid--two   { grid-template-columns: 1fr 1fr; }
+.chapter-grid--three { grid-template-columns: 1fr 1fr 1fr; }
 
 /* ─── Figure ─────────────────────────────────────────────────────────────────── */
 .fig {

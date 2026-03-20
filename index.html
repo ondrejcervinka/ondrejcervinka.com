@@ -12,7 +12,7 @@
 <body>
 
   <header class="header">
-    <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home">OC.</a>
+    <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home"><img src="branding/logo_withoutBG.png" alt="Ondrej Cervinka"></a>
     <nav class="nav" aria-label="Site navigation">
       <a href="about.html">About</a>
       <a href="mailto:hello@ondrejcervinka.com">Contact</a>
@@ -26,7 +26,7 @@
   <main class="work" aria-label="Selected work">
 
     <!-- Chapter 1: NEVA -->
-    <article class="chapter" id="neva">
+    <article class="chapter" id="neva" data-tags="architecture visualization cgi">
       <div class="chapter-head">
         <span class="chapter-arrow">↑</span>
         <span class="chapter-client">NEVA</span>
@@ -48,84 +48,22 @@
       </div>
       <p class="chapter-desc">Architectural visualization as atmosphere — a residential project rendered at the intersection of raw concrete, soft light, and landscape silence.</p>
       <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">NEVA</span></div>
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Architecture · Visualization</span></div>
-      </div>
-    </article>
-
-    <div class="divider" aria-hidden="true"><span>·</span></div>
-
-    <!-- Chapter 2: Spectral -->
-    <article class="chapter" id="spectral">
-      <div class="chapter-head">
-        <span class="chapter-arrow">↑</span>
-        <span class="chapter-client">Spectral</span>
-      </div>
-      <div class="chapter-images">
-        <div class="chapter-grid chapter-grid--full">
-          <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/001.png" alt="Spectral Eyewear" loading="lazy"></div>
-          </figure>
+        <div class="meta-info">
+          <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">NEVA</span></div>
+          <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Architecture · Visualization</span></div>
+        </div>
+        <div class="meta-tags">
+          <button class="tag-filter" data-tag="architecture">Architecture</button>
+          <button class="tag-filter" data-tag="visualization">Visualization</button>
+          <button class="tag-filter" data-tag="cgi">CGI</button>
         </div>
       </div>
-      <p class="chapter-desc">Optical geometry pushed to its edge — a full CGI eyewear campaign built on form, light refraction, and the idea that glass can feel alive.</p>
-      <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">Spectral</span></div>
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Eyewear · CGI</span></div>
-      </div>
     </article>
 
     <div class="divider" aria-hidden="true"><span>·</span></div>
 
-    <!-- Chapter 3: Hublot -->
-    <article class="chapter" id="hublot">
-      <div class="chapter-head">
-        <span class="chapter-arrow">↑</span>
-        <span class="chapter-client">Hublot</span>
-      </div>
-      <div class="chapter-images">
-        <div class="chapter-grid chapter-grid--full">
-          <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang" loading="lazy"></div>
-          </figure>
-        </div>
-      </div>
-      <p class="chapter-desc">A precision render for the Big Bang — where the complexity of a mechanical movement meets the language of high-end CGI product photography.</p>
-      <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">Hublot</span></div>
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Big Bang · Luxury</span></div>
-      </div>
-    </article>
-
-    <div class="divider" aria-hidden="true"><span>·</span></div>
-
-    <!-- Chapter 4: Nike + L'Oréal -->
-    <article class="chapter" id="nike">
-      <div class="chapter-head">
-        <span class="chapter-arrow">↑</span>
-        <span class="chapter-client">Nike · L'Oréal</span>
-      </div>
-      <div class="chapter-images">
-        <div class="chapter-grid chapter-grid--two">
-          <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/image_shoe.png" alt="Nike Air Max TN" loading="lazy"></div>
-          </figure>
-          <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/visual01_v006.jpg" alt="L'Oréal Campaign Visual" loading="lazy"></div>
-          </figure>
-        </div>
-      </div>
-      <p class="chapter-desc">Two campaigns rooted in material confidence — the kinetic tension of a sole mid-flight and the luminous stillness of a beauty hero shot.</p>
-      <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">Nike · L'Oréal</span></div>
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Footwear · Beauty CGI</span></div>
-      </div>
-    </article>
-
-    <div class="divider" aria-hidden="true"><span>·</span></div>
-
-    <!-- Chapter 5: Pantene -->
-    <article class="chapter" id="pantene">
+    <!-- Chapter 2: Pantene -->
+    <article class="chapter" id="pantene" data-tags="beauty campaign cgi">
       <div class="chapter-head">
         <span class="chapter-arrow">↑</span>
         <span class="chapter-client">Pantene</span>
@@ -158,76 +96,109 @@
       </div>
       <p class="chapter-desc">A full CGI campaign for Pantene Pro-V Miracle — hero shots built on motion, fluid dynamics, and the visual language of transformation.</p>
       <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">Pantene</span></div>
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Pro-V Miracle · Beauty CGI</span></div>
+        <div class="meta-info">
+          <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">Pantene</span></div>
+          <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Pro-V Miracle · Beauty CGI</span></div>
+        </div>
+        <div class="meta-tags">
+          <button class="tag-filter" data-tag="beauty">Beauty</button>
+          <button class="tag-filter" data-tag="campaign">Campaign</button>
+          <button class="tag-filter" data-tag="cgi">CGI</button>
+        </div>
       </div>
     </article>
 
     <div class="divider" aria-hidden="true"><span>·</span></div>
 
-    <!-- Chapter 6: Material studies -->
-    <article class="chapter" id="material">
+    <!-- Chapter 3: R&D -->
+    <article class="chapter" id="rnd" data-tags="rnd material personal cgi">
       <div class="chapter-head">
         <span class="chapter-arrow">↑</span>
-        <span class="chapter-client">Material Studies</span>
+        <span class="chapter-client">R&amp;D</span>
       </div>
       <div class="chapter-images">
-        <div class="chapter-grid chapter-grid--two">
+        <div class="chapter-grid chapter-grid--three">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/024_FN_cloth_001.png" alt="024 Fabric Study" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang — precision render" loading="lazy"></div>
           </figure>
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/imageasd.png" alt="Mineral Study" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/image_shoe.png" alt="Nike Air Max TN" loading="lazy"></div>
+          </figure>
+          <figure class="fig">
+            <div class="fig-img-wrap"><img src="portfolio-materials/001.png" alt="Spectral Eyewear" loading="lazy"></div>
           </figure>
         </div>
         <div class="chapter-grid chapter-grid--two">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/v003_00015.png" alt="Glass Study" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/024_FN_cloth_001.png" alt="Fabric study" loading="lazy"></div>
           </figure>
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/imagehairs.png" alt="Hair Motion" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/v003_00015.png" alt="Glass study" loading="lazy"></div>
+          </figure>
+        </div>
+        <div class="chapter-grid chapter-grid--three">
+          <figure class="fig">
+            <div class="fig-img-wrap"><img src="portfolio-materials/imageasd.png" alt="Mineral study" loading="lazy"></div>
+          </figure>
+          <figure class="fig">
+            <div class="fig-img-wrap"><img src="portfolio-materials/image111.png" alt="Carbon wave" loading="lazy"></div>
+          </figure>
+          <figure class="fig">
+            <div class="fig-img-wrap"><img src="portfolio-materials/0119.jpg" alt="Voile abstract" loading="lazy"></div>
           </figure>
         </div>
       </div>
-      <p class="chapter-desc">Personal explorations into surface, weight, and texture — fabric under tension, stone rendered with geological patience, glass as a liquid interrupted mid-pour.</p>
+      <p class="chapter-desc">Research, experiments, and personal work — materials pushed beyond their limits, forms that resist category, and renders built purely to understand the craft more deeply.</p>
       <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Material Studies · Personal</span></div>
-      </div>
-    </article>
-
-    <div class="divider" aria-hidden="true"><span>·</span></div>
-
-    <!-- Chapter 7: Abstract -->
-    <article class="chapter" id="abstract">
-      <div class="chapter-head">
-        <span class="chapter-arrow">↑</span>
-        <span class="chapter-client">Abstract</span>
-      </div>
-      <div class="chapter-images">
-        <div class="chapter-grid chapter-grid--two">
-          <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/image111.png" alt="Carbon Wave" loading="lazy"></div>
-          </figure>
-          <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/0119.jpg" alt="Voile Abstract" loading="lazy"></div>
-          </figure>
+        <div class="meta-info">
+          <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">R&amp;D · Personal</span></div>
         </div>
-      </div>
-      <p class="chapter-desc">Work that resists category — carbon woven into wave forms, fabric dissolving into air. These pieces exist only to push the renderer further.</p>
-      <div class="chapter-meta">
-        <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Abstract · Personal</span></div>
+        <div class="meta-tags">
+          <button class="tag-filter" data-tag="material">Material</button>
+          <button class="tag-filter" data-tag="personal">Personal</button>
+          <button class="tag-filter" data-tag="cgi">CGI</button>
+        </div>
       </div>
     </article>
 
   </main>
 
-  <footer class="footer">
-    <span class="footer-name">Ondrej Cervinka</span>
-    <div class="footer-links">
-      <a href="mailto:hello@ondrejcervinka.com">hello@ondrejcervinka.com</a>
-      <span>© 2026</span>
+  <footer class="footer-full">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="branding/logo_withoutBG.png" alt="Ondrej Cervinka" class="footer-logo">
+        <p class="footer-tagline">3D artist &amp; visual director.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-label">Navigate</p>
+        <a href="index.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="mailto:hello@ondrejcervinka.com">Contact</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-label">Contact</p>
+        <a href="mailto:hello@ondrejcervinka.com">hello@ondrejcervinka.com</a>
+        <p>Available for campaigns,<br>product visualization &amp; direction.</p>
+      </div>
+      <div class="footer-col footer-col--right">
+        <div class="footer-social">
+          <a href="https://www.instagram.com/cervinka.cg/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ondrejcervinka/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+          </a>
+        </div>
+        <p class="footer-copy">© 2026 Ondrej Cervinka.<br>All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightbox-close">Close</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
   <script>
     // Sticky header border
@@ -236,7 +207,53 @@
       header.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
 
-    // Image parallax on hover
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.fig .fig-img-wrap img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-close').addEventListener('click', e => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Tag filter
+    let activeTag = null;
+    document.querySelectorAll('.tag-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        if (activeTag === tag) {
+          activeTag = null;
+          document.querySelectorAll('.tag-filter').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.chapter').forEach(c => c.hidden = false);
+          document.querySelectorAll('.divider').forEach(d => d.hidden = false);
+        } else {
+          activeTag = tag;
+          document.querySelectorAll('.tag-filter').forEach(t => t.classList.toggle('active', t.dataset.tag === tag));
+          document.querySelectorAll('.chapter').forEach(c => {
+            c.hidden = !c.dataset.tags.split(' ').includes(tag);
+          });
+          document.querySelectorAll('.divider').forEach(d => d.hidden = true);
+        }
+      });
+    });
   </script>
 </body>
 </html>

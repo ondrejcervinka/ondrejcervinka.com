@@ -21,11 +21,13 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h1 class="hero-text">I make things look better than real.<br><span class="hero-sub">3D artist &amp; visual director.</span></h1>
+  <main>
+  <section class="hero" aria-label="Introduction">
+    <h1 class="hero-text">I make things look better than real.</h1>
+    <p class="hero-sub">3D artist &amp; visual director.</p>
   </section>
 
-  <main class="work" aria-label="Selected work">
+  <div class="work" aria-label="Selected work" role="region">
 
     <!-- Chapter 1: NEVA -->
     <article class="chapter" id="neva" data-tags="architecture visualization cgi" aria-labelledby="neva-title">
@@ -127,10 +129,7 @@
       <div class="chapter-images">
         <div class="chapter-grid chapter-grid--three">
           <figure class="fig">
-            <a href="rnd.html" class="fig-img-wrap fig-project-link" aria-label="View R&D project">
-              <img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang — precision render" loading="lazy">
-              <span class="fig-project-label">View project →</span>
-            </a>
+            <div class="fig-img-wrap"><img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang — precision render" loading="lazy"></div>
           </figure>
           <figure class="fig">
             <div class="fig-img-wrap"><img src="portfolio-materials/image_shoe.png" alt="Nike Air Max TN" loading="lazy"></div>
@@ -174,7 +173,7 @@
 
     <p class="filter-empty" id="filter-empty" hidden>No projects match this filter. <button class="filter-clear-inline" id="filter-clear-inline">Clear</button></p>
 
-  </main>
+  </div>
 
   <section class="cta">
     <div class="cta-inner">
@@ -182,9 +181,11 @@
         <span class="chapter-arrow" aria-hidden="true">↑</span>
         <span class="chapter-client">Get in touch</span>
       </div>
-      <a href="mailto:hello@ondrejcervinka.com" class="cta-headline">Let's make<br>something real.</a>
+      <a href="mailto:hello@ondrejcervinka.com" class="cta-headline" aria-label="Let's make something real — email hello@ondrejcervinka.com">Let's make<br>something real.</a>
     </div>
   </section>
+
+  </main>
 
   <footer class="footer-full">
     <div class="footer-inner">

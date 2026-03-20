@@ -8,6 +8,7 @@ a { color: inherit; text-decoration: none; }
   --bg:       #f7f6f3;
   --ink:      #111110;
   --muted:    #767370;
+  --muted-label: #595856; /* lifted for WCAG AA at small sizes (≥4.5:1 on --bg) */
   --line:     #d8d6d2;
 
   --font:     'Inter', system-ui, sans-serif;
@@ -94,6 +95,7 @@ body {
   font-family: var(--font);
   font-weight: 400;
   letter-spacing: 0;
+  margin-top: 12px;
 }
 
 /* ─── Work ───────────────────────────────────────────────────────────────────── */
@@ -142,8 +144,15 @@ body {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-label);
+  transition: color 0.15s;
 }
+
+a.chapter-client {
+  padding: 8px 0; /* expand touch target without changing visual size */
+}
+
+a.chapter-client:hover { color: var(--ink); }
 
 .chapter-desc {
   font-family: var(--font-serif);
@@ -308,7 +317,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-label);
   line-height: 2;
 }
 
@@ -503,7 +512,7 @@ body {
 .project-nav-next {
   font-size: 13px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--muted-label);
   text-decoration: none;
   transition: color 0.15s;
 }
@@ -570,7 +579,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-label);
 }
 
 .about-col p {
@@ -608,9 +617,14 @@ body {
   .chapter-grid--full .fig img { aspect-ratio: 4/3; }
   .about-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .about-headline { font-size: clamp(32px, 8vw, 52px); }
+  .project-nav { padding: 28px var(--pad) 40px; }
 
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
   .footer-links-row { flex-wrap: wrap; gap: 16px; }
+}
+
+@media (max-width: 380px) {
+  .about-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── Lightbox ───────────────────────────────────────────────────────────────── */
@@ -692,6 +706,12 @@ body {
   outline: 2px solid var(--bg);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Images inside overflow:hidden wrappers can't show outline — use box-shadow instead */
+.fig .fig-img-wrap img:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 3px var(--ink);
 }
 
 /* ─── Reduced motion ─────────────────────────────────────────────────────────── */

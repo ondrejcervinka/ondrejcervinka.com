@@ -57,12 +57,8 @@
       <div class="chapter-meta">
         <div class="meta-info">
           <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">NEVA</span></div>
-          <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Architecture · Visualization</span></div>
-        </div>
-        <div class="meta-tags">
-          <button class="tag-filter" data-tag="architecture" aria-pressed="false">Architecture</button>
-          <button class="tag-filter" data-tag="visualization" aria-pressed="false">Visualization</button>
-          <button class="tag-filter" data-tag="cgi" aria-pressed="false">CGI</button>
+          <div class="meta-tag"><span class="fig-label">Studio</span><span class="fig-value">Punctum Images</span></div>
+          <div class="meta-tag"><span class="fig-label">Project</span><span class="fig-value">Architecture · Visualization</span></div>
         </div>
       </div>
     </article>
@@ -108,12 +104,8 @@
       <div class="chapter-meta">
         <div class="meta-info">
           <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">Pantene</span></div>
-          <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">Pro-V Miracle · Beauty CGI</span></div>
-        </div>
-        <div class="meta-tags">
-          <button class="tag-filter" data-tag="beauty" aria-pressed="false">Beauty</button>
-          <button class="tag-filter" data-tag="campaign" aria-pressed="false">Campaign</button>
-          <button class="tag-filter" data-tag="cgi" aria-pressed="false">CGI</button>
+          <div class="meta-tag"><span class="fig-label">Studio</span><span class="fig-value">ArsThanea</span></div>
+          <div class="meta-tag"><span class="fig-label">Project</span><span class="fig-value">Pro-V Miracle · Beauty CGI</span></div>
         </div>
       </div>
     </article>
@@ -161,17 +153,11 @@
       <p class="chapter-desc">Personal work with no brief and no client — materials tested past the point of realism, forms with no commercial purpose, renders that exist only to sharpen the eye.</p>
       <div class="chapter-meta">
         <div class="meta-info">
-          <div class="meta-tag"><span class="fig-label">Work</span><span class="fig-value">R&amp;D · Personal</span></div>
-        </div>
-        <div class="meta-tags">
-          <button class="tag-filter" data-tag="material" aria-pressed="false">Material</button>
-          <button class="tag-filter" data-tag="personal" aria-pressed="false">Personal</button>
-          <button class="tag-filter" data-tag="cgi" aria-pressed="false">CGI</button>
+          <div class="meta-tag"><span class="fig-label">Project</span><span class="fig-value">R&amp;D · Personal</span></div>
         </div>
       </div>
     </article>
 
-    <p class="filter-empty" id="filter-empty" hidden>No projects match this filter. <button class="filter-clear-inline" id="filter-clear-inline">Clear</button></p>
 
   </div>
 
@@ -274,43 +260,6 @@
       revealObserver.observe(el);
     });
 
-    // Tag filter
-    let activeTag = null;
-
-    function clearFilter() {
-      activeTag = null;
-      document.querySelectorAll('.tag-filter').forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-pressed', 'false');
-      });
-      document.querySelectorAll('.chapter').forEach(c => c.hidden = false);
-      document.querySelectorAll('.divider').forEach(d => d.hidden = false);
-      document.getElementById('filter-empty').hidden = true;
-    }
-
-    document.querySelectorAll('.tag-filter').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tag = btn.dataset.tag;
-        if (activeTag === tag) {
-          clearFilter();
-        } else {
-          activeTag = tag;
-          document.querySelectorAll('.tag-filter').forEach(t => {
-            const isActive = t.dataset.tag === tag;
-            t.classList.toggle('active', isActive);
-            t.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-          });
-          document.querySelectorAll('.chapter').forEach(c => {
-            c.hidden = !c.dataset.tags.split(' ').includes(tag);
-          });
-          document.querySelectorAll('.divider').forEach(d => d.hidden = true);
-          const anyVisible = [...document.querySelectorAll('.chapter')].some(c => !c.hidden);
-          document.getElementById('filter-empty').hidden = anyVisible;
-        }
-      });
-    });
-
-    document.getElementById('filter-clear-inline').addEventListener('click', clearFilter);
   </script>
 </body>
 </html>

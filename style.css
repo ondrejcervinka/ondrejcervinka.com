@@ -84,10 +84,10 @@ body {
 }
 
 .nav a:hover::after,
-.nav a[aria-current="page"]::after { transform: scaleX(1); }
+.nav a[aria-current]::after { transform: scaleX(1); }
 
 .nav a:hover,
-.nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current] { color: var(--ink); }
 
 /* ─── Hero ───────────────────────────────────────────────────────────────────── */
 .hero {
@@ -611,6 +611,11 @@ a, button { cursor: none; }
   height: 44px;
   background: transparent;
   border: 1px solid #fff;
+}
+
+.cursor.in-lightbox {
+  mix-blend-mode: normal;
+  background: #fff;
 }
 
 @media (hover: none) {

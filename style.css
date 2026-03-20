@@ -207,6 +207,7 @@ body {
 
 .fig .fig-img-wrap {
   overflow: hidden;
+  cursor: zoom-in;
 }
 
 .fig img {
@@ -240,7 +241,6 @@ body {
 .divider {
   display: flex;
   justify-content: center;
-  padding: 0;
   border-top: 1px solid var(--line);
   position: relative;
   max-width: var(--max);
@@ -268,85 +268,33 @@ body {
 .footer-inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 72px var(--pad) 64px;
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1.8fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.footer-brand {
+  padding: 40px var(--pad);
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.footer-logo {
-  height: 72px;
-  width: 72px !important;
-  display: block;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+.footer-links-row {
+  display: flex;
+  gap: 28px;
+  align-items: center;
 }
 
-.footer-tagline {
+.footer-links-row a {
   font-size: 12px;
-  font-weight: 400;
-  color: rgba(247, 246, 243, 0.45);
-  line-height: 1.5;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-col-label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(247, 246, 243, 0.4);
-  margin-bottom: 4px;
-}
-
-.footer-col a,
-.footer-col p {
-  font-size: 13px;
   font-weight: 400;
   color: rgba(247, 246, 243, 0.7);
   text-decoration: none;
-  line-height: 1.6;
-  transition: color 0.15s;
-}
-
-.footer-col a:hover { color: var(--bg); }
-
-.footer-col--right {
-  align-items: flex-end;
-  text-align: right;
-}
-
-.footer-social {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.footer-social a {
-  color: rgba(247, 246, 243, 0.5);
   transition: color 0.15s;
   display: flex;
   align-items: center;
 }
 
-.footer-social a:hover { color: var(--bg); }
+.footer-links-row a:hover { color: var(--bg); }
 
 .footer-copy {
   font-size: 12px;
-  color: rgba(247, 246, 243, 0.35);
-  line-height: 1.65;
+  color: rgba(247, 246, 243, 0.5);
 }
 
 /* ─── About ──────────────────────────────────────────────────────────────────── */
@@ -434,15 +382,6 @@ body {
 
   .hero { padding-top: 56px; padding-bottom: 48px; }
   .chapter { padding: 48px 0; gap: 32px; }
-
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 48px 32px;
-  }
-  .footer-col--right {
-    align-items: flex-start;
-    text-align: left;
-  }
 }
 
 @media (max-width: 640px) {
@@ -453,8 +392,8 @@ body {
   .about-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .about-headline { font-size: clamp(32px, 8vw, 52px); }
 
-  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
-  .footer-col--right { align-items: flex-start; text-align: left; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-links-row { flex-wrap: wrap; gap: 16px; }
 }
 
 /* ─── Lightbox ───────────────────────────────────────────────────────────────── */
@@ -494,7 +433,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(247, 246, 243, 0.5);
+  color: rgba(247, 246, 243, 0.75);
   cursor: pointer;
   transition: color 0.15s;
   background: none;
@@ -512,7 +451,38 @@ body {
   filter: brightness(0.85);
 }
 
+/* ─── Focus states ───────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.nav a:focus-visible,
+.footer-links-row a:focus-visible,
+.about-col a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.tag-filter:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.lightbox-close:focus-visible {
+  outline: 2px solid var(--bg);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ─── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

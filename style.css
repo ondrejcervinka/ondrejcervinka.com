@@ -249,6 +249,33 @@ body {
   position: relative;
 }
 
+.fig-project-link {
+  display: block;
+  text-decoration: none;
+}
+
+.fig-project-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.fig-project-link:hover .fig-project-label {
+  opacity: 1;
+}
+
+.fig-project-link::after { display: none; }
+
 .fig .fig-img-wrap::after {
   content: '↗';
   position: absolute;
@@ -409,7 +436,7 @@ body {
   gap: 80px;
   padding-bottom: 64px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 
 .project-intro-left {
@@ -459,6 +486,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  padding-top: 48px;
 }
 
 .project-nav {
@@ -575,6 +603,7 @@ body {
   .chapter-desc { font-size: 16px; max-width: 100%; }
   .project-intro { grid-template-columns: 1fr; gap: 40px; }
   .project-hero { margin-bottom: 40px; }
+  .project-gallery { padding-top: 40px; }
   .chapter-grid--two, .chapter-grid--three { grid-template-columns: 1fr; }
   .chapter-grid--full .fig img { aspect-ratio: 4/3; }
   .about-grid { grid-template-columns: 1fr 1fr; gap: 32px; }

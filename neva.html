@@ -15,7 +15,7 @@
   <header class="header">
     <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home"><img src="branding/logo_withoutBG.png" alt="Ondrej Cervinka"></a>
     <nav class="nav" aria-label="Site navigation">
-      <a href="index.html" aria-current="page">Work</a>
+      <a href="index.html">Work</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@ondrejcervinka.com">Contact</a>
     </nav>
@@ -157,7 +157,7 @@
       });
     }, { threshold: 0.08 });
 
-    document.querySelectorAll('.fig, .project-intro, .project-nav').forEach((el, i) => {
+    document.querySelectorAll('.fig, .project-intro').forEach((el, i) => {
       el.classList.add('reveal');
       el.style.transitionDelay = `${(i % 3) * 80}ms`;
       revealObserver.observe(el);

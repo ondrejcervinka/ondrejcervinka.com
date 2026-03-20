@@ -36,7 +36,10 @@
       <div class="chapter-images">
         <div class="chapter-grid chapter-grid--full">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/NEVA_SH091_v10_0063.png" alt="NEVA — exterior view" fetchpriority="high"></div>
+            <a href="neva.html" class="fig-img-wrap fig-project-link" aria-label="View NEVA project">
+              <img src="portfolio-materials/NEVA/NEVA_SH091_v10_0063.png" alt="NEVA — exterior view" fetchpriority="high">
+              <span class="fig-project-label">View project →</span>
+            </a>
           </figure>
         </div>
         <div class="chapter-grid chapter-grid--two">
@@ -73,7 +76,10 @@
       <div class="chapter-images">
         <div class="chapter-grid chapter-grid--full">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086512.jpg" alt="Pantene Pro-V hero" loading="lazy"></div>
+            <a href="pantene.html" class="fig-img-wrap fig-project-link" aria-label="View Pantene project">
+              <img src="portfolio-materials/Pantene/pantene_arsthanea_00086512.jpg" alt="Pantene Pro-V hero" loading="lazy">
+              <span class="fig-project-label">View project →</span>
+            </a>
           </figure>
         </div>
         <div class="chapter-grid chapter-grid--two">
@@ -121,7 +127,10 @@
       <div class="chapter-images">
         <div class="chapter-grid chapter-grid--three">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang — precision render" loading="lazy"></div>
+            <a href="rnd.html" class="fig-img-wrap fig-project-link" aria-label="View R&D project">
+              <img src="portfolio-materials/imageaaa.png" alt="Hublot Big Bang — precision render" loading="lazy">
+              <span class="fig-project-label">View project →</span>
+            </a>
           </figure>
           <figure class="fig">
             <div class="fig-img-wrap"><img src="portfolio-materials/image_shoe.png" alt="Nike Air Max TN" loading="lazy"></div>
@@ -228,7 +237,7 @@
       if (lastFocusedImg) lastFocusedImg.focus();
     }
 
-    document.querySelectorAll('.fig .fig-img-wrap img').forEach(img => {
+    document.querySelectorAll('.fig .fig-img-wrap:not(.fig-project-link) img').forEach(img => {
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', 'View full size: ' + img.alt);

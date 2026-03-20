@@ -45,9 +45,10 @@ body {
 .header.scrolled { border-color: var(--line); }
 
 .logo {
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 .nav {
@@ -56,8 +57,9 @@ body {
 }
 
 .nav a {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
+  letter-spacing: 0.02em;
   color: var(--muted);
   transition: color 0.15s;
 }
@@ -103,15 +105,15 @@ body {
 }
 
 .chapter-arrow {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
   color: var(--muted);
 }
 
 .chapter-client {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -172,19 +174,19 @@ body {
 
 
 .fig-label {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  line-height: 1.9;
+  line-height: 2;
 }
 
 .fig-value {
   font-size: 12px;
   font-weight: 400;
   color: var(--ink);
-  line-height: 1.9;
+  line-height: 2;
 }
 
 /* ─── Divider ────────────────────────────────────────────────────────────────── */
@@ -269,9 +271,9 @@ body {
 }
 
 .about-body p {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.65;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
   color: var(--ink);
 }
 
@@ -290,19 +292,19 @@ body {
 }
 
 .about-col-label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .about-col p {
   font-size: 13px;
   font-weight: 400;
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
 .about-col a {

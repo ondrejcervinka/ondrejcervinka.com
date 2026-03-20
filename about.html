@@ -24,20 +24,18 @@
   <main class="about">
 
     <div class="about-intro">
-      <div class="chapter-head">
+      <div class="chapter-head reveal">
         <span class="chapter-arrow" aria-hidden="true">↑</span>
         <span class="chapter-client">About</span>
       </div>
-      <h1 class="about-headline">I make things look<br>better than real.</h1>
+      <h1 class="about-headline reveal">Based in Prague.<br>Working globally.</h1>
+      <div class="about-body reveal">
+        <p>CGI, product visualization, creative direction — imagery that doesn't just show a product, but gives it a world to live in. Every surface, every shadow, every frame is considered.</p>
+        <p>I've worked with brands across beauty, fashion, footwear, luxury, and architecture — Nike, Hublot, Pantene, L'Oréal, NEVA. One key visual or a full campaign: the standard doesn't change.</p>
+      </div>
     </div>
 
-    <div class="about-body">
-      <p>CGI, product visualization, creative direction — imagery that doesn't just show a product, but gives it a world to live in. Every surface, every shadow, every frame is considered.</p>
-      <p>I've worked with brands across beauty, fashion, footwear, luxury, and technology — Nike, Hublot, Pantene, L'Oréal. One key visual or a full campaign: the standard doesn't change.</p>
-      <p>Available for campaigns, product visualization, brand films, and creative direction.</p>
-    </div>
-
-    <div class="about-grid">
+    <div class="about-grid reveal">
       <div class="about-col">
         <p class="about-col-label">Disciplines</p>
         <p>3D Visualization</p>
@@ -60,13 +58,12 @@
         <p>Hublot</p>
         <p>Pantene</p>
         <p>L'Oréal</p>
-        <p>+ more on request</p>
+        <p>NEVA</p>
       </div>
       <div class="about-col">
         <p class="about-col-label">Contact</p>
-        <p><a href="mailto:hello@ondrejcervinka.com">hello@ondrejcervinka.com</a></p>
-        <p><a href="https://www.instagram.com/cervinka.cg/" target="_blank" rel="noopener" aria-label="Instagram (opens in new tab)">Instagram</a></p>
-        <p><a href="https://www.linkedin.com/in/ondrejcervinka/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a></p>
+        <p><a href="https://www.instagram.com/cervinka.cg/" target="_blank" rel="noopener" aria-label="Instagram (opens in new tab)">Instagram ↗</a></p>
+        <p><a href="https://www.linkedin.com/in/ondrejcervinka/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn ↗</a></p>
       </div>
     </div>
 
@@ -106,8 +103,7 @@
       });
     }, { threshold: 0.08 });
 
-    document.querySelectorAll('.about-intro, .about-body, .about-grid').forEach((el, i) => {
-      el.classList.add('reveal');
+    document.querySelectorAll('.reveal').forEach((el, i) => {
       el.style.transitionDelay = `${i * 80}ms`;
       revealObserver.observe(el);
     });

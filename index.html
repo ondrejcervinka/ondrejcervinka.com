@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
 
@@ -163,6 +164,16 @@
 
   </main>
 
+  <section class="cta">
+    <div class="cta-inner">
+      <div class="chapter-head">
+        <span class="chapter-arrow" aria-hidden="true">↑</span>
+        <span class="chapter-client">Get in touch</span>
+      </div>
+      <a href="mailto:hello@ondrejcervinka.com" class="cta-headline">Let's make<br>something real.</a>
+    </div>
+  </section>
+
   <footer class="footer-full">
     <div class="footer-inner">
       <div class="footer-links-row">
@@ -233,6 +244,22 @@
     });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fig, .chapter-head, .chapter-desc, .chapter-meta, .divider').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = `${(i % 4) * 60}ms`;
+      observer.observe(el);
     });
 
     // Tag filter

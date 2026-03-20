@@ -62,9 +62,9 @@ body {
 }
 
 .nav a {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   color: var(--muted);
   transition: color 0.15s;
 }
@@ -92,7 +92,19 @@ body {
 .work {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 var(--pad) 120px;
+  padding: 0 var(--pad) 40px;
+}
+
+/* ─── Scroll reveal ──────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ─── Chapter ────────────────────────────────────────────────────────────────── */
@@ -207,7 +219,24 @@ body {
 
 .fig .fig-img-wrap {
   overflow: hidden;
-  cursor: zoom-in;
+  position: relative;
+}
+
+.fig .fig-img-wrap::after {
+  content: '↗';
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 13px;
+  color: var(--bg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.fig .fig-img-wrap:hover::after {
+  opacity: 0.8;
 }
 
 .fig img {
@@ -257,6 +286,34 @@ body {
   transform: translateY(-50%);
   display: block;
 }
+
+/* ─── CTA ────────────────────────────────────────────────────────────────────── */
+.cta {
+  border-top: 1px solid var(--line);
+}
+
+.cta-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px var(--pad) 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cta-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 8vw, 112px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+}
+
+.cta-headline:hover { color: var(--muted); }
 
 /* ─── Footer ─────────────────────────────────────────────────────────────────── */
 .footer-full {

@@ -11,11 +11,12 @@
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
+<div class="cursor" id="cursor"></div>
 
   <header class="header">
     <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home"><img src="branding/logo_withoutBG.png" alt="Ondrej Cervinka"></a>
     <nav class="nav" aria-label="Site navigation">
-      <a href="index.html">Work</a>
+      <a href="index.html" aria-current="page">Work</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@ondrejcervinka.com">Contact</a>
     </nav>
@@ -119,7 +120,7 @@
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" id="lightbox-close">Close</button>
-    <img id="lightbox-img" src="" alt="">
+    <img id="lightbox-img" src="" alt="" aria-hidden="true">
   </div>
 
   <script>
@@ -148,7 +149,7 @@
       if (lastFocusedImg) lastFocusedImg.focus();
     }
 
-    document.querySelectorAll('.fig .fig-img-wrap img').forEach(img => {
+    document.querySelectorAll('.fig .fig-img-wrap:not(.fig-project-link) img').forEach(img => {
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', 'View full size: ' + img.alt);
@@ -181,6 +182,19 @@
       el.style.transitionDelay = `${(i % 3) * 80}ms`;
       revealObserver.observe(el);
     });
+
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  if (cursor && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+    document.querySelectorAll('.fig-img-wrap, a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+    });
+  }
   </script>
 </body>
 </html>

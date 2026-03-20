@@ -518,7 +518,7 @@ a.chapter-client:hover { color: var(--ink); }
 
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 2fr 1fr;
   gap: 40px;
   padding-top: 40px;
   border-top: 1px solid var(--line);
@@ -551,6 +551,57 @@ a.chapter-client:hover { color: var(--ink); }
 }
 
 .about-col a:hover { color: var(--muted); }
+
+.about-close {
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.about-close-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.about-close-link:hover {
+  color: var(--ink);
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────────────────────────── */
+* { cursor: none; }
+a, button { cursor: none; }
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition:
+    width  0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.3s ease,
+    border 0.3s ease;
+}
+
+.cursor.expanded {
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--ink);
+}
+
+@media (hover: none) {
+  * { cursor: auto; }
+  a, button { cursor: auto; }
+  .cursor { display: none; }
+}
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {

@@ -11,6 +11,7 @@
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
+<div class="cursor" id="cursor"></div>
 
   <header class="header">
     <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home"><img src="branding/logo_withoutBG.png" alt="Ondrej Cervinka"></a>
@@ -162,6 +163,19 @@
       el.style.transitionDelay = `${(i % 3) * 80}ms`;
       revealObserver.observe(el);
     });
+
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  if (cursor && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+    document.querySelectorAll('.fig-img-wrap, a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+    });
+  }
   </script>
 </body>
 </html>

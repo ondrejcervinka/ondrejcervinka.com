@@ -6,94 +6,83 @@
   <title>About — Ondrej Cervinka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-
   <header class="header">
-    <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home">OC</a>
-    <nav class="header-nav" aria-label="Site navigation">
-      <a href="about.html" class="active" aria-current="page">About</a>
+    <a href="index.html" class="logo" aria-label="Ondrej Cervinka — Home">OC.</a>
+    <nav class="nav" aria-label="Site navigation">
+      <a href="about.html" aria-current="page" style="color: var(--ink);">About</a>
       <a href="mailto:hello@ondrejcervinka.com">Contact</a>
     </nav>
   </header>
 
-  <div class="about-layout">
+  <main class="about">
 
-    <aside class="about-sidebar" aria-label="Profile summary">
-      <p class="about-tag">
-        Ondrej Cervinka<br>
-        3D Artist<br>
-        Visual Director<br>
-        Based in Europe
-      </p>
-    </aside>
-
-    <main class="about-body-wrap">
-
-      <h1 class="about-headline">
-        I make things look better than real.
-      </h1>
-
-      <p class="about-body">
-        I work at the intersection of CGI, product visualization, and creative direction —
-        building imagery that doesn't just show a product, but gives it a world to live in.
-        Every surface, every shadow, every frame is considered.
-      </p>
-      <p class="about-body">
-        Over the years I've collaborated with brands across beauty, fashion, footwear,
-        luxury, and technology. From a single key visual to a full campaign, I approach
-        each brief with the same intent: to make something that holds attention and
-        communicates exactly what it needs to.
-      </p>
-      <p class="about-body">
-        Available for campaigns, product visualization, brand films, and creative direction.
-      </p>
-
-      <div class="about-info">
-        <div class="about-info-col">
-          <p class="about-info-label">Disciplines</p>
-          <p>3D Visualization</p>
-          <p>CGI Campaign</p>
-          <p>Motion Design</p>
-          <p>Creative Direction</p>
-          <p>Product Visual</p>
-        </div>
-        <div class="about-info-col">
-          <p class="about-info-label">Software</p>
-          <p>Cinema 4D</p>
-          <p>Houdini</p>
-          <p>Redshift</p>
-          <p>After Effects</p>
-          <p>Photoshop</p>
-        </div>
-        <div class="about-info-col">
-          <p class="about-info-label">Clients</p>
-          <p>Nike</p>
-          <p>Hublot</p>
-          <p>Pantene</p>
-          <p>L'Oréal</p>
-          <p>+ more on request</p>
-        </div>
-        <div class="about-info-col">
-          <p class="about-info-label">Contact</p>
-          <p><a href="mailto:hello@ondrejcervinka.com">hello@ondrejcervinka.com</a></p>
-          <p><a href="#" aria-label="Instagram (link coming soon)">Instagram</a></p>
-          <p><a href="#" aria-label="LinkedIn (link coming soon)">LinkedIn</a></p>
-        </div>
+    <div class="about-intro">
+      <div class="chapter-head">
+        <span class="chapter-arrow">↑</span>
+        <span class="chapter-client">About</span>
       </div>
+      <h1 class="about-headline">I make things look<br>better than real.</h1>
+    </div>
 
-    </main>
-  </div>
+    <div class="about-body">
+      <p>I work at the intersection of CGI, product visualization, and creative direction — building imagery that doesn't just show a product, but gives it a world to live in. Every surface, every shadow, every frame is considered.</p>
+      <p>Over the years I've collaborated with brands across beauty, fashion, footwear, luxury, and technology. From a single key visual to a full campaign, I approach each brief with the same intent: to make something that holds attention and communicates exactly what it needs to.</p>
+      <p>Available for campaigns, product visualization, brand films, and creative direction.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-col">
+        <p class="about-col-label">Disciplines</p>
+        <p>3D Visualization</p>
+        <p>CGI Campaign</p>
+        <p>Motion Design</p>
+        <p>Creative Direction</p>
+        <p>Product Visual</p>
+      </div>
+      <div class="about-col">
+        <p class="about-col-label">Software</p>
+        <p>Cinema 4D</p>
+        <p>Houdini</p>
+        <p>Redshift</p>
+        <p>After Effects</p>
+        <p>Photoshop</p>
+      </div>
+      <div class="about-col">
+        <p class="about-col-label">Clients</p>
+        <p>Nike</p>
+        <p>Hublot</p>
+        <p>Pantene</p>
+        <p>L'Oréal</p>
+        <p>+ more on request</p>
+      </div>
+      <div class="about-col">
+        <p class="about-col-label">Contact</p>
+        <p><a href="mailto:hello@ondrejcervinka.com">hello@ondrejcervinka.com</a></p>
+        <p><a href="#">Instagram</a></p>
+        <p><a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+
+  </main>
 
   <footer class="footer">
-    <span>ondrejcervinka.com</span>
-    <span>© 2026</span>
+    <span class="footer-name">Ondrej Cervinka</span>
+    <div class="footer-links">
+      <a href="mailto:hello@ondrejcervinka.com">hello@ondrejcervinka.com</a>
+      <span>© 2026</span>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEVA — Ondrej Cervinka</title>
+  <title>NEVA Zipscreen — Ondrej Cervinka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -24,21 +24,34 @@
 
   <main class="project">
 
-    <div class="project-hero">
-      <img src="portfolio-materials/NEVA/NEVA_SH091_v10_0063.png" alt="NEVA — exterior view" fetchpriority="high">
+    <div class="project-hero video-wrap" id="video-wrap">
+      <video id="neva-video" autoplay muted playsinline>
+        <source src="portfolio-materials/NEVA/NVA_ZIPSCR_v013-webm.webm" type="video/webm">
+      </video>
+      <div class="video-overlay">
+        <div class="video-controls">
+          <button class="video-ctrl-btn" id="video-toggle" aria-label="Pause video">
+            <svg id="icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            <svg id="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+          <button class="video-ctrl-btn" id="video-replay" aria-label="Replay video" style="opacity:0;pointer-events:none">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="project-intro">
       <div class="project-intro-left">
         <div class="chapter-head">
           <span class="chapter-arrow" aria-hidden="true">↑</span>
-          <span class="chapter-client">NEVA</span>
+          <span class="chapter-client">NEVA Zipscreen</span>
         </div>
         <h1 class="project-title">Architecture<br>as atmosphere.</h1>
         <div class="project-meta-grid">
           <div class="project-meta-item">
             <span class="fig-label">Client</span>
-            <span class="fig-value">NEVA</span>
+            <span class="fig-value">NEVA Zipscreen</span>
           </div>
           <div class="project-meta-item">
             <span class="fig-label">Work</span>
@@ -59,15 +72,15 @@
     <div class="project-gallery">
       <div class="chapter-grid chapter-grid--two">
         <figure class="fig">
-          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image.png" alt="NEVA — interior" loading="lazy"></div>
+          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image.png" alt="NEVA Zipscreen — interior" loading="lazy"></div>
         </figure>
         <figure class="fig">
-          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image11.png" alt="NEVA — detail" loading="lazy"></div>
+          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image11.png" alt="NEVA Zipscreen — detail" loading="lazy"></div>
         </figure>
       </div>
       <div class="chapter-grid chapter-grid--full">
         <figure class="fig">
-          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image111.png" alt="NEVA — abstract view" loading="lazy"></div>
+          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image111.png" alt="NEVA Zipscreen — abstract view" loading="lazy"></div>
         </figure>
       </div>
     </div>
@@ -167,6 +180,34 @@
       el.style.transitionDelay = `${(i % 3) * 80}ms`;
       revealObserver.observe(el);
     });
+
+  // Video controls
+  const video    = document.getElementById('neva-video');
+  const toggle   = document.getElementById('video-toggle');
+  const replay   = document.getElementById('video-replay');
+  const iconPlay = document.getElementById('icon-play');
+  const iconPause= document.getElementById('icon-pause');
+
+  function setPaused(paused) {
+    iconPlay.style.display        = paused ? '' : 'none';
+    iconPause.style.display       = paused ? 'none' : '';
+    replay.style.opacity          = paused ? '1' : '0';
+    replay.style.pointerEvents    = paused ? 'auto' : 'none';
+    toggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+  }
+
+  if (video) {
+    toggle.addEventListener('click', () => {
+      video.paused ? video.play() : video.pause();
+    });
+    replay.addEventListener('click', () => {
+      video.currentTime = 0;
+      video.play();
+    });
+    video.addEventListener('pause', () => setPaused(true));
+    video.addEventListener('play',  () => setPaused(false));
+    video.addEventListener('ended', () => setPaused(true));
+  }
 
   // Custom cursor
   const cursor = document.getElementById('cursor');

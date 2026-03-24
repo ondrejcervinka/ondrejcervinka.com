@@ -30,34 +30,47 @@
 
   <div class="work" aria-label="Selected work" role="region">
 
-    <!-- Chapter 1: NEVA -->
+    <!-- Chapter 1: NEVA Zipscreen -->
     <article class="chapter" id="neva" data-tags="architecture visualization cgi" aria-labelledby="neva-title">
       <div class="chapter-head">
         <span class="chapter-arrow" aria-hidden="true">↑</span>
-        <a href="neva.html" class="chapter-client" id="neva-title">NEVA</a>
+        <a href="neva.html" class="chapter-client" id="neva-title">NEVA Zipscreen</a>
       </div>
       <div class="chapter-images">
         <div class="chapter-grid chapter-grid--full">
           <figure class="fig">
-            <a href="neva.html" class="fig-img-wrap fig-project-link" aria-label="View NEVA project">
-              <img src="portfolio-materials/NEVA/NEVA_SH091_v10_0063.png" alt="NEVA — exterior view" fetchpriority="high">
-              <span class="fig-project-label">View project →</span>
-            </a>
+            <div class="fig-img-wrap video-wrap" id="index-video-wrap">
+              <video id="index-neva-video" autoplay muted playsinline>
+                <source src="portfolio-materials/NEVA/NVA_ZIPSCR_v013-webm.webm" type="video/webm">
+              </video>
+              <div class="video-overlay">
+                <div class="video-controls">
+                  <button class="video-ctrl-btn" id="index-video-toggle" aria-label="Pause video">
+                    <svg id="index-icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    <svg id="index-icon-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </button>
+                  <button class="video-ctrl-btn" id="index-video-replay" aria-label="Replay video" style="opacity:0;pointer-events:none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  </button>
+                </div>
+                <a href="neva.html" class="video-project-link">View project →</a>
+              </div>
+            </div>
           </figure>
         </div>
         <div class="chapter-grid chapter-grid--two">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image.png" alt="NEVA — interior" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image.png" alt="NEVA Zipscreen — interior" loading="lazy"></div>
           </figure>
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image11.png" alt="NEVA — detail" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image11.png" alt="NEVA Zipscreen — detail" loading="lazy"></div>
           </figure>
         </div>
       </div>
       <p class="chapter-desc">Architectural visualization as atmosphere — a residential project rendered at the intersection of raw concrete, soft light, and landscape silence.</p>
       <div class="chapter-meta">
         <div class="meta-info">
-          <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">NEVA</span></div>
+          <div class="meta-tag"><span class="fig-label">Client</span><span class="fig-value">NEVA Zipscreen</span></div>
           <div class="meta-tag"><span class="fig-label">Studio</span><span class="fig-value">Punctum Images</span></div>
           <div class="meta-tag"><span class="fig-label">Project</span><span class="fig-value">Architecture · Visualization</span></div>
         </div>
@@ -264,6 +277,34 @@
       el.style.transitionDelay = `${(i % 3) * 80}ms`;
       revealObserver.observe(el);
     });
+
+  // Index video controls
+  const idxVideo   = document.getElementById('index-neva-video');
+  const idxToggle  = document.getElementById('index-video-toggle');
+  const idxReplay  = document.getElementById('index-video-replay');
+  const idxIconPlay  = document.getElementById('index-icon-play');
+  const idxIconPause = document.getElementById('index-icon-pause');
+
+  function idxSetPaused(paused) {
+    idxIconPlay.style.display     = paused ? '' : 'none';
+    idxIconPause.style.display    = paused ? 'none' : '';
+    idxReplay.style.opacity       = paused ? '1' : '0';
+    idxReplay.style.pointerEvents = paused ? 'auto' : 'none';
+    idxToggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+  }
+
+  if (idxVideo) {
+    idxToggle.addEventListener('click', () => {
+      idxVideo.paused ? idxVideo.play() : idxVideo.pause();
+    });
+    idxReplay.addEventListener('click', () => {
+      idxVideo.currentTime = 0;
+      idxVideo.play();
+    });
+    idxVideo.addEventListener('pause', () => idxSetPaused(true));
+    idxVideo.addEventListener('play',  () => idxSetPaused(false));
+    idxVideo.addEventListener('ended', () => idxSetPaused(true));
+  }
 
   // Custom cursor
   const cursor = document.getElementById('cursor');

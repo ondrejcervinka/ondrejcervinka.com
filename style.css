@@ -289,8 +289,10 @@ a.chapter-client:hover { color: var(--ink); }
   background: var(--line);
 }
 
-.chapter-grid--full .fig img {
+.chapter-grid--full .fig img,
+.chapter-grid--full .fig video {
   aspect-ratio: 16/9;
+  object-fit: cover;
 }
 
 .fig-label {
@@ -682,7 +684,8 @@ a, button { cursor: none; }
   pointer-events: all;
 }
 
-.lightbox img {
+.lightbox img,
+.lightbox video {
   max-width: 92vw;
   max-height: 92vh;
   width: auto;

@@ -30,11 +30,11 @@
       </video>
       <div class="video-overlay">
         <div class="video-controls">
-          <button class="video-ctrl-btn" id="video-toggle" aria-label="Pause video">
-            <svg id="icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-            <svg id="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <button class="video-ctrl-btn video-toggle" aria-label="Pause video">
+            <svg class="icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            <svg class="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           </button>
-          <button class="video-ctrl-btn" id="video-replay" aria-label="Replay video" style="opacity:0;pointer-events:none">
+          <button class="video-ctrl-btn video-replay" aria-label="Replay video" style="opacity:0;pointer-events:none">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
           </button>
         </div>
@@ -78,9 +78,28 @@
           <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image11.png" alt="NEVA Zipscreen — detail" loading="lazy"></div>
         </figure>
       </div>
-      <div class="chapter-grid chapter-grid--full">
+      <div class="chapter-grid chapter-grid--two">
+        <figure class="fig">
+          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/NEVA/NVA_01-webm.webm" type="video/webm"></video></div>
+        </figure>
+        <figure class="fig">
+          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/NEVA/NVA_02-webm.webm" type="video/webm"></video></div>
+        </figure>
+      </div>
+      <div class="chapter-grid chapter-grid--three">
         <figure class="fig">
           <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/image111.png" alt="NEVA Zipscreen — abstract view" loading="lazy"></div>
+        </figure>
+        <figure class="fig">
+          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/NEVA_SH091_v10_0063.png" alt="NEVA Zipscreen — exterior view" loading="lazy"></div>
+        </figure>
+        <figure class="fig">
+          <div class="fig-img-wrap"><img src="portfolio-materials/NEVA/NEVA_SH0110_v03_0063.png" alt="NEVA Zipscreen — exterior detail" loading="lazy"></div>
+        </figure>
+      </div>
+      <div class="chapter-grid chapter-grid--full">
+        <figure class="fig">
+          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/NEVA/NVA_03-webm.webm" type="video/webm"></video></div>
         </figure>
       </div>
     </div>
@@ -110,9 +129,10 @@
   </footer>
 
   <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
     <button class="lightbox-close" id="lightbox-close">Close</button>
     <img id="lightbox-img" src="" alt="" aria-hidden="true">
+    <video id="lightbox-video" muted loop playsinline style="display:none" aria-hidden="true"></video>
   </div>
 
   <script>
@@ -122,15 +142,33 @@
     }, { passive: true });
 
     // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+    const lightbox      = document.getElementById('lightbox');
+    const lightboxImg   = document.getElementById('lightbox-img');
+    const lightboxVideo = document.getElementById('lightbox-video');
     const lightboxClose = document.getElementById('lightbox-close');
-    let lastFocusedImg = null;
+    let lastFocused = null;
 
-    function openLightbox(img) {
-      lastFocusedImg = img;
+    function openLightboxImg(img) {
+      lastFocused = img;
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
+      lightboxImg.style.display = '';
+      lightboxVideo.style.display = 'none';
+      lightboxVideo.pause();
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const cur = document.getElementById('cursor');
+      if (cur) cur.classList.add('in-lightbox');
+      lightboxClose.focus();
+    }
+
+    function openLightboxVideo(video) {
+      lastFocused = video;
+      lightboxVideo.src = video.querySelector('source').src;
+      lightboxVideo.style.display = '';
+      lightboxImg.style.display = 'none';
+      lightboxVideo.load();
+      lightboxVideo.play();
       lightbox.classList.add('is-open');
       document.body.style.overflow = 'hidden';
       const cur = document.getElementById('cursor');
@@ -141,18 +179,31 @@
     function closeLightbox() {
       lightbox.classList.remove('is-open');
       document.body.style.overflow = '';
+      lightboxVideo.pause();
+      lightboxVideo.src = '';
       const cur = document.getElementById('cursor');
       if (cur) cur.classList.remove('in-lightbox');
-      if (lastFocusedImg) lastFocusedImg.focus();
+      if (lastFocused) lastFocused.focus();
     }
 
     document.querySelectorAll('.fig .fig-img-wrap:not(.fig-project-link) img').forEach(img => {
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', 'View full size: ' + img.alt);
-      img.addEventListener('click', () => openLightbox(img));
+      img.addEventListener('click', () => openLightboxImg(img));
       img.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightboxImg(img); }
+      });
+    });
+
+    document.querySelectorAll('.fig .fig-img-wrap:not(.project-hero) video[loop]').forEach(video => {
+      video.style.cursor = 'none';
+      video.setAttribute('tabindex', '0');
+      video.setAttribute('role', 'button');
+      video.setAttribute('aria-label', 'View full size');
+      video.addEventListener('click', () => openLightboxVideo(video));
+      video.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightboxVideo(video); }
       });
     });
 
@@ -181,33 +232,36 @@
       revealObserver.observe(el);
     });
 
-  // Video controls
-  const video    = document.getElementById('neva-video');
-  const toggle   = document.getElementById('video-toggle');
-  const replay   = document.getElementById('video-replay');
-  const iconPlay = document.getElementById('icon-play');
-  const iconPause= document.getElementById('icon-pause');
+  // Video controls — generic, works for all .video-wrap elements
+  document.querySelectorAll('.video-wrap').forEach(wrap => {
+    const video  = wrap.querySelector('video');
+    const toggle = wrap.querySelector('.video-toggle');
+    const replay = wrap.querySelector('.video-replay');
+    if (!video || !toggle) return;
 
-  function setPaused(paused) {
-    iconPlay.style.display        = paused ? '' : 'none';
-    iconPause.style.display       = paused ? 'none' : '';
-    replay.style.opacity          = paused ? '1' : '0';
-    replay.style.pointerEvents    = paused ? 'auto' : 'none';
-    toggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
-  }
+    function setPaused(paused) {
+      toggle.querySelector('.icon-play').style.display  = paused ? '' : 'none';
+      toggle.querySelector('.icon-pause').style.display = paused ? 'none' : '';
+      if (replay) {
+        replay.style.opacity       = paused ? '1' : '0';
+        replay.style.pointerEvents = paused ? 'auto' : 'none';
+      }
+      toggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+    }
 
-  if (video) {
     toggle.addEventListener('click', () => {
       video.paused ? video.play() : video.pause();
     });
-    replay.addEventListener('click', () => {
-      video.currentTime = 0;
-      video.play();
-    });
+    if (replay) {
+      replay.addEventListener('click', () => {
+        video.currentTime = 0;
+        video.play();
+      });
+    }
     video.addEventListener('pause', () => setPaused(true));
     video.addEventListener('play',  () => setPaused(false));
     video.addEventListener('ended', () => setPaused(true));
-  }
+  });
 
   // Custom cursor
   const cursor = document.getElementById('cursor');

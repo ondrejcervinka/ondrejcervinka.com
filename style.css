@@ -653,7 +653,8 @@ a, button { cursor: none; }
   .project-hero { margin-bottom: 40px; }
   .project-gallery { padding-top: 40px; }
   .chapter-grid--two, .chapter-grid--three { grid-template-columns: 1fr; }
-  .chapter-grid--full .fig img { aspect-ratio: 4/3; }
+  .chapter-grid--full .fig img,
+  .chapter-grid--full .fig video { aspect-ratio: 4/3; }
   .project-nav { padding: 28px var(--pad) 40px; }
 
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }

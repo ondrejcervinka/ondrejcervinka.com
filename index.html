@@ -99,10 +99,23 @@
       <div class="chapter-images">
         <div class="chapter-grid chapter-grid--full">
           <figure class="fig">
-            <a href="pantene.html" class="fig-img-wrap fig-project-link" aria-label="View Pantene project">
-              <img src="portfolio-materials/Pantene/pantene_arsthanea_00086512.jpg" alt="Pantene Pro-V hero" loading="lazy">
-              <span class="fig-project-label">View project →</span>
-            </a>
+            <div class="fig-img-wrap video-wrap">
+              <video autoplay muted playsinline>
+                <source src="portfolio-materials/Pantene/Pantene_MAINVIDEO.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay">
+                <div class="video-controls">
+                  <button class="video-ctrl-btn video-toggle" aria-label="Pause video">
+                    <svg class="icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    <svg class="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </button>
+                  <button class="video-ctrl-btn video-replay" aria-label="Replay video" style="opacity:0;pointer-events:none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  </button>
+                </div>
+                <a href="pantene.html" class="video-project-link">View project →</a>
+              </div>
+            </div>
           </figure>
         </div>
         <div class="chapter-grid chapter-grid--two">
@@ -110,18 +123,18 @@
             <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086567.jpg" alt="Pantene — frame 2" loading="lazy"></div>
           </figure>
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086592.jpg" alt="Pantene — frame 3" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_01.jpg" alt="Pantene — frame 3" loading="lazy"></div>
           </figure>
         </div>
         <div class="chapter-grid chapter-grid--three">
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086645.jpg" alt="Pantene — frame 4" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_03.jpg" alt="Pantene — frame 4" loading="lazy"></div>
           </figure>
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086669.jpg" alt="Pantene — frame 5" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086590.jpg" alt="Pantene — frame 5" loading="lazy"></div>
           </figure>
           <figure class="fig">
-            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086683.jpg" alt="Pantene — frame 6" loading="lazy"></div>
+            <div class="fig-img-wrap"><img src="portfolio-materials/Pantene/pantene_arsthanea_00086657.jpg" alt="Pantene — frame 6" loading="lazy"></div>
           </figure>
         </div>
       </div>
@@ -324,33 +337,36 @@
       revealObserver.observe(el);
     });
 
-  // Index video controls
-  const idxVideo   = document.getElementById('index-neva-video');
-  const idxToggle  = document.getElementById('index-video-toggle');
-  const idxReplay  = document.getElementById('index-video-replay');
-  const idxIconPlay  = document.getElementById('index-icon-play');
-  const idxIconPause = document.getElementById('index-icon-pause');
+  // Video controls — generic for all .video-wrap on page
+  document.querySelectorAll('.video-wrap').forEach(wrap => {
+    const video  = wrap.querySelector('video');
+    const toggle = wrap.querySelector('.video-toggle');
+    const replay = wrap.querySelector('.video-replay');
+    if (!video || !toggle) return;
 
-  function idxSetPaused(paused) {
-    idxIconPlay.style.display     = paused ? '' : 'none';
-    idxIconPause.style.display    = paused ? 'none' : '';
-    idxReplay.style.opacity       = paused ? '1' : '0';
-    idxReplay.style.pointerEvents = paused ? 'auto' : 'none';
-    idxToggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
-  }
+    function setPaused(paused) {
+      toggle.querySelector('.icon-play').style.display  = paused ? '' : 'none';
+      toggle.querySelector('.icon-pause').style.display = paused ? 'none' : '';
+      if (replay) {
+        replay.style.opacity       = paused ? '1' : '0';
+        replay.style.pointerEvents = paused ? 'auto' : 'none';
+      }
+      toggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+    }
 
-  if (idxVideo) {
-    idxToggle.addEventListener('click', () => {
-      idxVideo.paused ? idxVideo.play() : idxVideo.pause();
+    toggle.addEventListener('click', () => {
+      video.paused ? video.play() : video.pause();
     });
-    idxReplay.addEventListener('click', () => {
-      idxVideo.currentTime = 0;
-      idxVideo.play();
-    });
-    idxVideo.addEventListener('pause', () => idxSetPaused(true));
-    idxVideo.addEventListener('play',  () => idxSetPaused(false));
-    idxVideo.addEventListener('ended', () => idxSetPaused(true));
-  }
+    if (replay) {
+      replay.addEventListener('click', () => {
+        video.currentTime = 0;
+        video.play();
+      });
+    }
+    video.addEventListener('pause', () => setPaused(true));
+    video.addEventListener('play',  () => setPaused(false));
+    video.addEventListener('ended', () => setPaused(true));
+  });
 
   // Custom cursor
   const cursor = document.getElementById('cursor');

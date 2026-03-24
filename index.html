@@ -40,7 +40,7 @@
         <div class="chapter-grid chapter-grid--full">
           <figure class="fig">
             <div class="fig-img-wrap video-wrap" id="index-video-wrap">
-              <video id="index-neva-video" autoplay muted playsinline>
+              <video id="index-neva-video" muted playsinline>
                 <source src="portfolio-materials/NEVA/NVA_ZIPSCR_v013-webm.webm" type="video/webm">
               </video>
               <div class="video-overlay">
@@ -100,7 +100,7 @@
         <div class="chapter-grid chapter-grid--full">
           <figure class="fig">
             <div class="fig-img-wrap video-wrap">
-              <video autoplay muted playsinline>
+              <video muted playsinline>
                 <source src="portfolio-materials/Pantene/Pantene_MAINVIDEO.mp4" type="video/mp4">
               </video>
               <div class="video-overlay">
@@ -366,6 +366,23 @@
     video.addEventListener('pause', () => setPaused(true));
     video.addEventListener('play',  () => setPaused(false));
     video.addEventListener('ended', () => setPaused(true));
+  });
+
+  // Autoplay videos on scroll
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target.querySelector('video');
+      if (!video) return;
+      if (entry.isIntersecting) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.video-wrap').forEach(wrap => {
+    videoObserver.observe(wrap);
   });
 
   // Custom cursor

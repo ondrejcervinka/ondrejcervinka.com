@@ -80,10 +80,10 @@
       </div>
       <div class="chapter-grid chapter-grid--two">
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/NEVA/NVA_01-webm.webm" type="video/webm"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/NEVA/NVA_01-webm.webm" type="video/webm"></video></div>
         </figure>
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/NEVA/NVA_02-webm.webm" type="video/webm"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/NEVA/NVA_02-webm.webm" type="video/webm"></video></div>
         </figure>
       </div>
       <div class="chapter-grid chapter-grid--three">
@@ -99,7 +99,7 @@
       </div>
       <div class="chapter-grid chapter-grid--full">
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/NEVA/NVA_03-webm.webm" type="video/webm"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/NEVA/NVA_03-webm.webm" type="video/webm"></video></div>
         </figure>
       </div>
     </div>
@@ -262,6 +262,18 @@
     video.addEventListener('play',  () => setPaused(false));
     video.addEventListener('ended', () => setPaused(true));
   });
+
+  // Autoplay videos on scroll
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target.tagName === 'VIDEO' ? entry.target : entry.target.querySelector('video');
+      if (!video) return;
+      entry.isIntersecting ? video.play() : video.pause();
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.video-wrap').forEach(wrap => videoObserver.observe(wrap));
+  document.querySelectorAll('.fig-img-wrap video').forEach(video => videoObserver.observe(video));
 
   // Custom cursor
   const cursor = document.getElementById('cursor');

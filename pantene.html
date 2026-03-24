@@ -25,7 +25,7 @@
   <main class="project">
 
     <div class="project-hero video-wrap">
-      <video autoplay muted playsinline>
+      <video muted playsinline>
         <source src="portfolio-materials/Pantene/Pantene_MAINVIDEO.mp4" type="video/mp4">
       </video>
       <div class="video-overlay">
@@ -80,10 +80,10 @@
       </div>
       <div class="chapter-grid chapter-grid--two">
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_AQPkv7XEbCrhxf_Fbqfm8psDBD-JVBrjWLFDn8BMjQfEFTgpXKjrD2K0BfvRUpZnOXs5MQLcOX65K8O6mnY1ZUvh.mp4" type="video/mp4"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_AQPkv7XEbCrhxf_Fbqfm8psDBD-JVBrjWLFDn8BMjQfEFTgpXKjrD2K0BfvRUpZnOXs5MQLcOX65K8O6mnY1ZUvh.mp4" type="video/mp4"></video></div>
         </figure>
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_AQPrlRA6aVRZNOVRrlMpmSWxu45D0riFZCct3frtRCkkeXzuIw1TTNj9uNQKSrJCbE6JGpbsSzB7UBH5WrPaeaR5.mp4" type="video/mp4"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_AQPrlRA6aVRZNOVRrlMpmSWxu45D0riFZCct3frtRCkkeXzuIw1TTNj9uNQKSrJCbE6JGpbsSzB7UBH5WrPaeaR5.mp4" type="video/mp4"></video></div>
         </figure>
       </div>
       <div class="chapter-grid chapter-grid--three">
@@ -99,10 +99,10 @@
       </div>
       <div class="chapter-grid chapter-grid--two">
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An-3lcwiwmpqfPwf0qkc7IeMR27CHq-DjNb_r_n8LZ_S-sUJF7VtBElibCUItqQY7HjrHGQlHmB4z98YtFx45zko.mp4" type="video/mp4"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An-3lcwiwmpqfPwf0qkc7IeMR27CHq-DjNb_r_n8LZ_S-sUJF7VtBElibCUItqQY7HjrHGQlHmB4z98YtFx45zko.mp4" type="video/mp4"></video></div>
         </figure>
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An83RHR8apDItP0K52teejJdqT7u1Gxgw7nzyMX2Ftoq-kpV4zT2DMD9hg7YBuNLvCsWuqbR7RPMO5-W9pglyunD.mp4" type="video/mp4"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An83RHR8apDItP0K52teejJdqT7u1Gxgw7nzyMX2Ftoq-kpV4zT2DMD9hg7YBuNLvCsWuqbR7RPMO5-W9pglyunD.mp4" type="video/mp4"></video></div>
         </figure>
       </div>
       <div class="chapter-grid chapter-grid--three">
@@ -118,10 +118,10 @@
       </div>
       <div class="chapter-grid chapter-grid--two">
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An_SpANyK0bhXK4WMflo0nI44F2VoxEiyF05DDsl57aCoGutBnJXmLrpWH-znoPYtdYoCAumjK7lsVn0vfKUaj3q.mp4" type="video/mp4"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An_SpANyK0bhXK4WMflo0nI44F2VoxEiyF05DDsl57aCoGutBnJXmLrpWH-znoPYtdYoCAumjK7lsVn0vfKUaj3q.mp4" type="video/mp4"></video></div>
         </figure>
         <figure class="fig">
-          <div class="fig-img-wrap"><video autoplay muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An_uVkAKR0h7iAT8LR2Ezjimb_2TZWVRCGRjBydGgKsCZe9jEG6t9NJQiDKeGFVzwQi7fwy1swTMw_r5p06XGD-_.mp4" type="video/mp4"></video></div>
+          <div class="fig-img-wrap"><video muted loop playsinline><source src="portfolio-materials/Pantene/Snapinsta.app_video_An_uVkAKR0h7iAT8LR2Ezjimb_2TZWVRCGRjBydGgKsCZe9jEG6t9NJQiDKeGFVzwQi7fwy1swTMw_r5p06XGD-_.mp4" type="video/mp4"></video></div>
         </figure>
       </div>
     </div>
@@ -247,6 +247,18 @@
       el.style.transitionDelay = `${(i % 3) * 80}ms`;
       revealObserver.observe(el);
     });
+
+  // Autoplay videos on scroll
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target.tagName === 'VIDEO' ? entry.target : entry.target.querySelector('video');
+      if (!video) return;
+      entry.isIntersecting ? video.play() : video.pause();
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.video-wrap').forEach(wrap => videoObserver.observe(wrap));
+  document.querySelectorAll('.fig-img-wrap video').forEach(video => videoObserver.observe(video));
 
   // Custom cursor
   const cursor = document.getElementById('cursor');

@@ -652,7 +652,6 @@ a, button { cursor: none; }
   .project-intro { grid-template-columns: 1fr; gap: 40px; }
   .project-hero { margin-bottom: 40px; }
   .project-gallery { padding-top: 40px; }
-  .chapter-grid--two, .chapter-grid--three { grid-template-columns: 1fr; }
   .chapter-grid--full .fig img,
   .chapter-grid--full .fig video { aspect-ratio: 4/3; }
   .project-nav { padding: 28px var(--pad) 40px; }
@@ -666,11 +665,23 @@ a, button { cursor: none; }
 }
 
 /* ─── Lightbox ───────────────────────────────────────────────────────────────── */
+.header,
+main,
+.footer-full {
+  transition: filter 0.35s ease;
+}
+
+body.lightbox-open .header,
+body.lightbox-open main,
+body.lightbox-open .footer-full {
+  filter: blur(10px);
+}
+
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(17, 17, 16, 0.95);
+  background: rgba(17, 17, 16, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;

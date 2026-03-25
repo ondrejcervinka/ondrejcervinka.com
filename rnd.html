@@ -138,7 +138,7 @@
       lastFocusedImg = img;
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
-      lightbox.classList.add('is-open');
+      lightbox.classList.add('is-open'); document.body.classList.add('lightbox-open');
       document.body.style.overflow = 'hidden';
       const cur = document.getElementById('cursor');
       if (cur) cur.classList.add('in-lightbox');
@@ -146,7 +146,7 @@
     }
 
     function closeLightbox() {
-      lightbox.classList.remove('is-open');
+      lightbox.classList.remove('is-open'); document.body.classList.remove('lightbox-open');
       const cur = document.getElementById('cursor');
       if (cur) cur.classList.remove('in-lightbox');
       document.body.style.overflow = '';

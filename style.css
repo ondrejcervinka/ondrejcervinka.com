@@ -752,6 +752,8 @@ body.lightbox-open .footer-full {
   color: rgba(247, 246, 243, 0.75);
   cursor: pointer;
   transition: color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
   background: none;
   border: none;
   font-family: var(--font);
@@ -764,6 +766,8 @@ body.lightbox-open .footer-full {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  -webkit-appearance: none;
+  appearance: none;
   background: none;
   border: none;
   color: rgba(247,246,243,0.5);

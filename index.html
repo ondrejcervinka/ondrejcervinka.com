@@ -266,6 +266,8 @@
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" id="lightbox-close">Close</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">←</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next">→</button>
     <img id="lightbox-img" src="" alt="" aria-hidden="true">
   </div>
 
@@ -276,13 +278,23 @@
       header.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
 
+    document.querySelectorAll('.chapter-arrow').forEach(el => {
+      el.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    });
+
     // Lightbox
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
     let lastFocusedImg = null;
+    const lightboxItems = [];
+    let currentIndex = -1;
 
-    function openLightbox(img) {
+    function openItem(index) {
+      currentIndex = (index + lightboxItems.length) % lightboxItems.length;
+      const img = lightboxItems[currentIndex];
       lastFocusedImg = img;
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
@@ -302,21 +314,26 @@
     }
 
     document.querySelectorAll('.fig .fig-img-wrap:not(.fig-project-link) img').forEach(img => {
+      const idx = lightboxItems.push(img) - 1;
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', 'View full size: ' + img.alt);
-      img.addEventListener('click', () => openLightbox(img));
+      img.addEventListener('click', () => openItem(idx));
       img.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openItem(idx); }
       });
     });
 
     lightbox.addEventListener('click', closeLightbox);
     lightboxClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    lightboxPrev.addEventListener('click', e => { e.stopPropagation(); openItem(currentIndex - 1); });
+    lightboxNext.addEventListener('click', e => { e.stopPropagation(); openItem(currentIndex + 1); });
 
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('is-open')) return;
       if (e.key === 'Escape') { closeLightbox(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); openItem(currentIndex - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); openItem(currentIndex + 1); }
       if (e.key === 'Tab') { e.preventDefault(); lightboxClose.focus(); }
     });
 
@@ -339,9 +356,10 @@
 
   // Video controls — generic for all .video-wrap on page
   document.querySelectorAll('.video-wrap').forEach(wrap => {
-    const video  = wrap.querySelector('video');
-    const toggle = wrap.querySelector('.video-toggle');
-    const replay = wrap.querySelector('.video-replay');
+    const video   = wrap.querySelector('video');
+    const toggle  = wrap.querySelector('.video-toggle');
+    const replay  = wrap.querySelector('.video-replay');
+    const overlay = wrap.querySelector('.video-overlay');
     if (!video || !toggle) return;
 
     function setPaused(paused) {
@@ -366,6 +384,39 @@
     video.addEventListener('pause', () => setPaused(true));
     video.addEventListener('play',  () => setPaused(false));
     video.addEventListener('ended', () => setPaused(true));
+
+    // Timeline
+    if (overlay) {
+      const tl = document.createElement('div');
+      tl.className = 'video-timeline';
+      tl.setAttribute('role', 'slider');
+      tl.setAttribute('aria-label', 'Video progress');
+      tl.setAttribute('aria-valuemin', '0');
+      tl.setAttribute('aria-valuemax', '100');
+      tl.setAttribute('aria-valuenow', '0');
+      tl.innerHTML = '<div class="video-timeline-track"><div class="video-timeline-progress"></div></div>';
+      overlay.appendChild(tl);
+
+      const progress = tl.querySelector('.video-timeline-progress');
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const pct = (video.currentTime / video.duration) * 100;
+        progress.style.width = pct + '%';
+        tl.setAttribute('aria-valuenow', Math.round(pct));
+      });
+
+      function seekTo(e) {
+        if (!video.duration) return;
+        const track = tl.querySelector('.video-timeline-track');
+        const rect = track.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        video.currentTime = pct * video.duration;
+      }
+      let scrubbing = false;
+      tl.addEventListener('mousedown', e => { scrubbing = true; seekTo(e); });
+      document.addEventListener('mousemove', e => { if (scrubbing) seekTo(e); });
+      document.addEventListener('mouseup', () => { scrubbing = false; });
+    }
   });
 
   // Autoplay videos on scroll

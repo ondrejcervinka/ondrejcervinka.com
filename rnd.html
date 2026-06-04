@@ -120,6 +120,8 @@
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" id="lightbox-close">Close</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">←</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next">→</button>
     <img id="lightbox-img" src="" alt="" aria-hidden="true">
   </div>
 
@@ -129,12 +131,22 @@
       header.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
 
+    document.querySelectorAll('.chapter-arrow').forEach(el => {
+      el.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    });
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
     let lastFocusedImg = null;
+    const lightboxItems = [];
+    let currentIndex = -1;
 
-    function openLightbox(img) {
+    function openItem(index) {
+      currentIndex = (index + lightboxItems.length) % lightboxItems.length;
+      const img = lightboxItems[currentIndex];
       lastFocusedImg = img;
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
@@ -154,20 +166,25 @@
     }
 
     document.querySelectorAll('.fig .fig-img-wrap:not(.fig-project-link) img').forEach(img => {
+      const idx = lightboxItems.push(img) - 1;
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', 'View full size: ' + img.alt);
-      img.addEventListener('click', () => openLightbox(img));
+      img.addEventListener('click', () => openItem(idx));
       img.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openItem(idx); }
       });
     });
 
     lightbox.addEventListener('click', closeLightbox);
     lightboxClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    lightboxPrev.addEventListener('click', e => { e.stopPropagation(); openItem(currentIndex - 1); });
+    lightboxNext.addEventListener('click', e => { e.stopPropagation(); openItem(currentIndex + 1); });
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('is-open')) return;
       if (e.key === 'Escape') { closeLightbox(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); openItem(currentIndex - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); openItem(currentIndex + 1); }
       if (e.key === 'Tab') { e.preventDefault(); lightboxClose.focus(); }
     });
 

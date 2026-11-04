@@ -1,3 +1,6 @@
 .DS_Store
 .claude/
 Thumbs.db
+
+# Nepouzivana PHP administrace - obsahuje pristupove udaje, nikdy necommitovat
+admin/

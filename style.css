@@ -997,8 +997,14 @@ body.lightbox-open .footer-full {
    Shows the whole frame at its own aspect ratio (--fit-ar, set inline) on all
    screen sizes; any band uses the video's background (--fit-bg). */
 .project-hero.project-hero--contain video,
-.chapter-grid--full .fig--contain video {
+.chapter-grid .fig--contain video {
   aspect-ratio: var(--fit-ar, 16/9);
   object-fit: contain;
   background: var(--fit-bg, #000);
+}
+
+/* Cropped to a fixed ratio (e.g. a 2.39:1 clip in a 16:9 index cell) */
+.chapter-grid .fig--cover video {
+  aspect-ratio: var(--fit-ar, 16/9);
+  object-fit: cover;
 }

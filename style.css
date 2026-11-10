@@ -992,3 +992,17 @@ body.lightbox-open .footer-full {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ─── Uncropped media (e.g. square Air Bank hero) ───────────────────────────
+   Shows the whole frame; the band around it uses the video's own background
+   (--fit-bg set inline), so no visible bars. */
+.project-hero.project-hero--contain video,
+.chapter-grid--full .fig--contain video {
+  object-fit: contain;
+  background: var(--fit-bg, #000);
+}
+
+@media (max-width: 640px) {
+  .project-hero.project-hero--contain video,
+  .chapter-grid--full .fig--contain video { aspect-ratio: 1/1; }
+}

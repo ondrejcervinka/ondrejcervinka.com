@@ -209,7 +209,7 @@
       video.style.cursor = 'none';
       video.setAttribute('tabindex', '0');
       video.setAttribute('role', 'button');
-      video.setAttribute('aria-label', 'View full size');
+      if (!video.hasAttribute('aria-label')) video.setAttribute('aria-label', 'View full size');
       video.addEventListener('click', () => openItem(idx));
       video.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openItem(idx); }

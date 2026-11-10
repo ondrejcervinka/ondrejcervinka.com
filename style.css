@@ -993,16 +993,12 @@ body.lightbox-open .footer-full {
   }
 }
 
-/* ─── Uncropped media (e.g. square Air Bank hero) ───────────────────────────
-   Shows the whole frame; the band around it uses the video's own background
-   (--fit-bg set inline), so no visible bars. */
+/* ─── Uncropped media (e.g. wide Air Bank hero) ─────────────────────────────
+   Shows the whole frame at its own aspect ratio (--fit-ar, set inline) on all
+   screen sizes; any band uses the video's background (--fit-bg). */
 .project-hero.project-hero--contain video,
 .chapter-grid--full .fig--contain video {
+  aspect-ratio: var(--fit-ar, 16/9);
   object-fit: contain;
   background: var(--fit-bg, #000);
-}
-
-@media (max-width: 640px) {
-  .project-hero.project-hero--contain video,
-  .chapter-grid--full .fig--contain video { aspect-ratio: 1/1; }
 }

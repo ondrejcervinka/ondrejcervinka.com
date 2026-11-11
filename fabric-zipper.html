@@ -214,7 +214,6 @@
 
     document.querySelectorAll('.fig .fig-img-wrap:not(.project-hero) video[loop]').forEach(video => {
       const idx = lightboxItems.push({ type: 'video', el: video }) - 1;
-      video.style.cursor = 'none';
       video.setAttribute('tabindex', '0');
       video.setAttribute('role', 'button');
       if (!video.hasAttribute('aria-label')) video.setAttribute('aria-label', 'View full size');
@@ -344,5 +343,6 @@
   }
   </script>
   <script src="sound.js" defer></script>
+  <script src="cursor.js" defer></script>
 </body>
 </html>

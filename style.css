@@ -171,7 +171,7 @@ body {
   font-size: 11px;
   font-weight: 400;
   color: var(--muted);
-  cursor: none;
+  cursor: pointer;
   user-select: none;
   transition: color 0.15s;
 }
@@ -628,8 +628,16 @@ a.chapter-client:hover { color: var(--ink); }
 
 
 /* ─── Custom Cursor ──────────────────────────────────────────────────────────── */
-* { cursor: none; }
-a, button { cursor: none; }
+/* The system cursor is hidden only while cursor.js runs (it adds html.has-cursor on
+   devices with a mouse). Without JS / on touch the normal cursor stays visible. */
+html.has-cursor,
+html.has-cursor * { cursor: none !important; }
+
+.cursor { display: none; }
+html.has-cursor .cursor { display: block; }
+
+/* clickable media (gallery / strip items opening the lightbox) without the custom cursor */
+[role="button"] { cursor: pointer; }
 
 .cursor {
   position: fixed;
@@ -903,7 +911,7 @@ body.lightbox-open .footer-full {
   border: 1.5px solid rgba(255, 255, 255, 0.7);
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  cursor: none;
+  cursor: pointer;
   backdrop-filter: blur(8px);
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
@@ -926,7 +934,7 @@ body.lightbox-open .footer-full {
   height: 38px;
   display: flex;
   align-items: center;
-  cursor: none;
+  cursor: pointer;
   pointer-events: auto;
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(8px);

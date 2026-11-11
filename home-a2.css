@@ -588,3 +588,104 @@ body.home-a2 {
     opacity: 1;
   }
 }
+
+/* ═══ Framed layout (body.a2-framed) ═══════════════════════════════════════════
+   Ondrej's review 2026-11-11: the videos are not sharp enough for full screen.
+   The active project sits in a frame on the site background; caption below the
+   frame, thumbnail strip at the bottom. All text dark (every slide is "light",
+   scrims 0, set by tools/build_home_a2.py FRAMED). */
+body.home-a2.a2-framed {
+  background: var(--bg);
+  /* strip height follows the thumbnail width: 11 columns between arrows */
+  --a2-thumb-h: calc((100vw - 2 * var(--pad) - 2 * 44px - 2 * 20px - 10 * 8px) / 11 * 0.625);
+  --a2-strip-h: calc(var(--a2-thumb-h) + 65px);
+  --a2-frame-top: 96px;
+  --a2-frame-x: 14.5vw;
+  --a2-cap-h: 108px;
+}
+
+.a2-framed main.a2 {
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.a2-framed .a2-stage {
+  top: var(--a2-frame-top);
+  bottom: calc(var(--a2-strip-h) + var(--a2-cap-h));
+  left: var(--a2-frame-x);
+  right: var(--a2-frame-x);
+}
+
+.a2-framed .a2-media {
+  object-position: var(--focal-d, 50% 50%);
+  background: var(--line);
+}
+
+.a2-framed .a2-slide::before,
+.a2-framed .a2-slide::after {
+  display: none;
+}
+
+/* caption: below the frame, left aligned with it */
+.a2-framed .a2-cap,
+.a2-framed .a2-slide[data-plate] .a2-cap {
+  top: calc(100% + 16px);
+  bottom: auto;
+  left: 0;
+  right: 0;
+  max-width: none;
+  padding: 0;
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "pos   num"
+    "title btn"
+    "meta  btn";
+  column-gap: 24px;
+  align-items: end;
+}
+
+.a2-framed .a2-pos   { grid-area: pos;   margin: 0 0 6px; font-size: 12px; }
+.a2-framed .a2-num   { grid-area: num;   margin: 0 0 6px; font-size: 12px; justify-self: end; }
+.a2-framed .a2-title { grid-area: title; margin: 0 0 4px; font-size: 26px; line-height: 1.15; }
+.a2-framed .a2-meta  { grid-area: meta;  margin: 0; font-size: 13px; }
+.a2-framed .a2-btn   { grid-area: btn;   align-self: end; justify-self: end; }
+
+.a2-framed .a2-strip {
+  background: none;
+}
+
+@media (max-width: 640px) {
+  body.home-a2.a2-framed {
+    --a2-frame-top: 72px;
+  }
+
+  .a2-framed .a2-stage {
+    left: 20px;
+    right: 20px;
+    bottom: auto;
+    height: calc((100vw - 40px) * 1.25); /* 4:5 */
+  }
+
+  .a2-framed .a2-media {
+    object-position: var(--focal-m, 50% 50%);
+  }
+
+  .a2-framed .a2-cap,
+  .a2-framed .a2-slide[data-plate] .a2-cap {
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    grid-template-areas:
+      "pos   num"
+      "title title"
+      "meta  btn";
+    column-gap: 16px;
+  }
+
+  .a2-framed .a2-title { font-size: 22px; margin: 0 0 6px; }
+  .a2-framed .a2-btn   { padding: 9px 14px; }
+}

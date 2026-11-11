@@ -89,6 +89,25 @@ body {
 .nav a:hover,
 .nav a[aria-current] { color: var(--ink); }
 
+/* Global sound switch (sound.js) — sits after Contact in the header nav */
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: -5px -5px -5px 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.sound-toggle svg { display: block; width: 18px; height: 18px; }
+.sound-toggle:hover,
+.sound-toggle[aria-pressed="true"] { color: var(--ink); }
+.sound-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 2px; }
+
 /* ─── Hero ───────────────────────────────────────────────────────────────────── */
 .hero {
   max-width: var(--max);

@@ -151,6 +151,20 @@ body.home-a2 { --a2-strip-a: var(--strip, .3); }
   color: var(--head-fg);
 }
 
+.a2-header .sound-toggle {
+  color: var(--head-fg-2);
+  transition: color .7s ease;
+}
+
+.a2-header .sound-toggle:hover,
+.a2-header .sound-toggle[aria-pressed="true"] {
+  color: var(--head-fg);
+}
+
+.a2-header .sound-toggle:focus-visible {
+  outline-color: var(--head-fg);
+}
+
 .a2-header .nav a::after {
   background: var(--head-fg);
 }

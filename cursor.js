@@ -17,9 +17,11 @@
   cursor.style.opacity = '0'; // until the first mouse move
   document.documentElement.classList.add('has-cursor');
 
-  // Elements that enlarge the cursor (event delegation: works for elements added
-  // or changed later - lightbox, homepage slides, strips, thumbnails).
-  var HOVER = 'a, button, [role="button"], .fig-img-wrap, .a2-sub-media, .a2-thumb, video, label, input, select, textarea';
+  // Elements that enlarge the cursor - the same rule as the original site
+  // ('.fig-img-wrap, a, button'), plus clickable media opening the lightbox
+  // ([role="button"]: homepage strip tiles). Event delegation, so it also works for
+  // elements added or changed later (lightbox, homepage slides, thumbnails).
+  var HOVER = '.fig-img-wrap, a, button, [role="button"]';
 
   document.addEventListener('mousemove', function (e) {
     cursor.style.left = e.clientX + 'px';

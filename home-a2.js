@@ -20,6 +20,26 @@
     }
   }
 
+  // Header + strip sit outside the slides: mirror the active slide's themes on <body>.
+  const THEME_ATTRS = ['data-head', 'data-cap', 'data-strip', 'data-head-m', 'data-cap-m', 'data-strip-m'];
+  function applyTheme(slide) {
+    THEME_ATTRS.forEach(a => {
+      const v = slide.getAttribute(a);
+      if (v) document.body.setAttribute(a, v);
+    });
+    ['--strip', '--strip-m'].forEach(p => {
+      const v = slide.style.getPropertyValue(p);
+      if (v) document.body.style.setProperty(p, v);
+    });
+  }
+
+  // Still images are loading="lazy"; inside a hidden slide they would only load
+  // once visible (black flash). Switch the active slide and its neighbours to eager.
+  function eagerImg(slide) {
+    const img = slide.querySelector('img.a2-media');
+    if (img && img.loading === 'lazy') img.loading = 'eager';
+  }
+
   function go(index, opts = {}) {
     const { updateHash = true, focusThumb = false } = opts;
     
@@ -47,6 +67,7 @@
     const newSlide = slides[i];
     newSlide.classList.add('is-active');
     newSlide.removeAttribute('aria-hidden');
+    applyTheme(newSlide);
     const newMedia = newSlide.querySelector('.a2-media');
     if (newMedia && newMedia.tagName === 'VIDEO') {
       ensureSrc(newMedia);
@@ -91,13 +112,14 @@
       activeThumb.focus({ preventScroll: true });
     }
 
-    // 9. Preload neighbour
+    // 9. Preload neighbours: next video metadata, next/previous still images
     const nextIndex = (i + 1) % N;
     const nextSlide = slides[nextIndex];
     const nextMedia = nextSlide.querySelector('.a2-media');
     if (nextMedia && nextMedia.tagName === 'VIDEO') {
       ensureSrc(nextMedia, 'metadata');
     }
+    [newSlide, nextSlide, slides[(i - 1 + N) % N]].forEach(eagerImg);
   }
 
   // Initial State
@@ -108,6 +130,7 @@
     if (targetIndex !== 0) {
       go(targetIndex, { updateHash: false });
     } else {
+      applyTheme(slides[0]);
       // Slide 0 is active in the markup; only now give its video a source.
       const firstVideo = slides[0].querySelector('video.a2-media');
       if (firstVideo) {

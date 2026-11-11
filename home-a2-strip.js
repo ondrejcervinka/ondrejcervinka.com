@@ -5,6 +5,8 @@
 
   var lightbox = document.getElementById('lightbox');
   var lightboxVideo = document.getElementById('lightbox-video');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var isVideo = function (el) { return el.tagName === 'VIDEO'; };
   var lightboxClose = document.getElementById('lightbox-close');
   var lightboxPrev = document.getElementById('lightbox-prev');
   var lightboxNext = document.getElementById('lightbox-next');
@@ -16,19 +18,23 @@
 
   function activate(slide) {
     var items = slide.querySelectorAll('.a2-sub-media');
-    items.forEach(function (video) {
-      if (reduced) return; // posters only
-      if (video.dataset.src && !video.hasAttribute('src')) {
-        video.src = video.dataset.src;
+    items.forEach(function (el) {
+      if (!isVideo(el)) { // still image tile: just load it
+        if (el.dataset.src && !el.hasAttribute('src')) el.src = el.dataset.src;
+        return;
       }
-      video.play().catch(function () {}); // also when coming back to the slide
+      if (reduced) return; // posters only
+      if (el.dataset.src && !el.hasAttribute('src')) {
+        el.src = el.dataset.src;
+      }
+      el.play().catch(function () {}); // also when coming back to the slide
     });
   }
 
   function deactivate(slide) {
     var items = slide.querySelectorAll('.a2-sub-media');
-    items.forEach(function (video) {
-      video.pause();
+    items.forEach(function (el) {
+      if (isVideo(el)) el.pause();
     });
   }
 
@@ -94,17 +100,15 @@
     var items = Array.prototype.slice.call(slide.querySelectorAll('.a2-sub-media'));
     lbIndex = Math.max(0, items.indexOf(item));
 
-    lightboxVideo.src = item.dataset.src || item.currentSrc;
-    lightboxVideo.load();
-    if (!reduced) lightboxVideo.play().catch(function () {});
+    show(item);
 
     lightbox.classList.add('is-open');
     document.body.classList.add('lightbox-open');
 
     wasPlaying = [];
     items.forEach(function (v) {
-      wasPlaying.push(!v.paused);
-      v.pause();
+      wasPlaying.push(isVideo(v) && !v.paused);
+      if (isVideo(v)) v.pause();
     });
 
     var mainMedia = slide.querySelector('.a2-media');
@@ -125,6 +129,26 @@
     }
   }
 
+  // Show a strip item in the lightbox: videos in #lightbox-video, images (original
+  // file from data-full) in #lightbox-img.
+  function show(item) {
+    if (isVideo(item)) {
+      lightboxImg.style.display = 'none';
+      lightboxImg.removeAttribute('src');
+      lightboxVideo.style.display = '';
+      lightboxVideo.src = item.dataset.src || item.currentSrc;
+      lightboxVideo.load();
+      if (!reduced) lightboxVideo.play().catch(function () {});
+    } else {
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute('src');
+      lightboxVideo.style.display = 'none';
+      lightboxImg.src = item.dataset.full || item.src;
+      lightboxImg.alt = item.alt;
+      lightboxImg.style.display = '';
+    }
+  }
+
   function close() {
     lightbox.classList.remove('is-open');
     document.body.classList.remove('lightbox-open');
@@ -135,7 +159,7 @@
     if (activeSlide) {
       var items = activeSlide.querySelectorAll('.a2-sub-media');
       items.forEach(function (v, i) {
-        if (!reduced && wasPlaying[i]) v.play().catch(function () {});
+        if (!reduced && wasPlaying[i] && isVideo(v)) v.play().catch(function () {});
       });
       var mainMedia = activeSlide.querySelector('.a2-media');
       if (mainMedia && mainMedia.tagName === 'VIDEO' && wasPlaying.main) {
@@ -151,9 +175,7 @@
     var items = Array.prototype.slice.call(activeSlide.querySelectorAll('.a2-sub-media'));
     if (items.length <= 1) return;
     lbIndex = (lbIndex + dir + items.length) % items.length;
-    lightboxVideo.src = items[lbIndex].dataset.src || items[lbIndex].currentSrc;
-    lightboxVideo.load();
-    if (!reduced) lightboxVideo.play().catch(function () {});
+    show(items[lbIndex]);
   }
 
   lightboxClose.addEventListener('click', close);

@@ -768,3 +768,48 @@ body.home-a2.a2-framed {
 @media (prefers-reduced-motion: reduce) {
   .a2-sub-media { transition: none; }
 }
+
+/* Placeholder for a strip slot whose source is not decided yet */
+.a2-sub-empty {
+  aspect-ratio: var(--sar, 16/9);
+  background: var(--line);
+}
+
+/* ─── Split layout (desktop): main media left at full height, items stacked right ───
+   H = (W - gap * kg) / ks, from --ks / --kg (tools/build_home_a2.py). Mobile falls back
+   to the stack layout (main on top, items side by side below). */
+@media (min-width: 641px) {
+  .a2-framed .a2-group--split {
+    --hg: min(100cqh, (100cqw - var(--gap) * var(--kg)) / var(--ks));
+    width: calc(var(--hg) * var(--ks) + var(--gap) * var(--kg));
+    height: var(--hg);
+    display: flex;
+    gap: var(--gap);
+  }
+
+  .a2-framed .a2-group--split .a2-media {
+    flex: none;
+    width: calc(var(--hg) * var(--arn));
+    height: var(--hg);
+  }
+
+  .a2-framed .a2-group--split .a2-sub {
+    flex: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    width: calc((var(--hg) - var(--gap)) / 2 * var(--sarn));
+  }
+
+  .a2-framed .a2-group--split .a2-sub li {
+    height: calc((var(--hg) - var(--gap)) / 2);
+  }
+
+  .a2-framed .a2-group--split .a2-sub-media,
+  .a2-framed .a2-group--split .a2-sub-empty {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}

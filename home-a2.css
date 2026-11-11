@@ -711,3 +711,60 @@ body.home-a2.a2-framed {
   .a2-framed .a2-title { font-size: 22px; margin: 0 0 6px; }
   .a2-framed .a2-btn   { padding: 9px 14px; }
 }
+
+/* ─── Main video + strip of further outputs (slides with .a2-group) ─────────────
+   W fits both: W / arn + gap + W / n * (tile h/w) <= area height  →  W = (H - gap) / k
+   (--k, --n, --sar from tools/build_home_a2.py STRIP). Main video uncropped, tiles
+   share one height and may crop a little (object-fit: cover). */
+.a2-framed .a2-group {
+  --gap: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100cqw, (100cqh - var(--gap)) / var(--k, 1));
+}
+
+.a2-framed .a2-group .a2-media {
+  position: static;
+  inset: auto;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ar);
+}
+
+.a2-sub {
+  list-style: none;
+  margin: var(--gap) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.a2-sub-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--sar, 16/9);
+  object-fit: cover;
+  background: var(--line);
+  transition: filter .3s ease;
+}
+
+.a2-sub-media:hover {
+  filter: brightness(.85);
+}
+
+.a2-sub-media:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .a2-framed .a2-group { --gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a2-sub-media { transition: none; }
+}

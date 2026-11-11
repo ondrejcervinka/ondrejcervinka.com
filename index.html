@@ -29,8 +29,14 @@
   <main class="a2" id="a2">
     <h1 class="a2-visually-hidden">I make things look better than real.</h1>
     <div class="a2-stage">
-      <section class="a2-slide is-active" id="airbank" data-index="0" aria-label="Air Bank" data-head="light" data-cap="light" data-strip="light" data-head-m="light" data-cap-m="light" data-strip-m="light" style="--focal:50% 50%;--focal-d:50% 50%;--focal-m:38% 50%;--ar:1920/824;--arn:2.3301;--top:0;--scrim:0;--strip:0;--plate:0;--top-m:0;--scrim-m:0;--strip-m:0">
-        <video class="a2-media" muted loop playsinline preload="none" poster="assets/projects/airbank/airbank-hero-wide.jpg" data-src="assets/projects/airbank/airbank-hero-wide.mp4"></video>
+      <section class="a2-slide is-active" id="airbank" data-index="0" aria-label="Air Bank" data-head="light" data-cap="light" data-strip="light" data-head-m="light" data-cap-m="light" data-strip-m="light" style="--focal:50% 50%;--focal-d:50% 50%;--focal-m:38% 50%;--ar:1920/824;--arn:2.3301;--n:2;--sar:4/3;--k:0.8042;--top:0;--scrim:0;--strip:0;--plate:0;--top-m:0;--scrim-m:0;--strip-m:0">
+        <div class="a2-group">
+          <video class="a2-media" muted loop playsinline preload="none" poster="assets/projects/airbank/airbank-hero-wide.jpg" data-src="assets/projects/airbank/airbank-hero-wide.mp4"></video>
+          <ul class="a2-sub">
+            <li><video class="a2-sub-media" muted loop playsinline preload="none" poster="assets/projects/airbank/airbank-film-02-light.jpg" data-src="assets/projects/airbank/airbank-film-02-light.mp4" aria-label="Air Bank — five designs, stacked, light"></video></li>
+            <li><video class="a2-sub-media" muted loop playsinline preload="none" poster="assets/projects/airbank/airbank-film-04-light.jpg" data-src="assets/projects/airbank/airbank-film-04-light.mp4" aria-label="Air Bank — designs in rows, light"></video></li>
+          </ul>
+        </div>
         <div class="a2-cap">
           <p class="a2-pos">CGI artist and visual director.</p>
           <p class="a2-num">01 / 11</p>
@@ -49,8 +55,14 @@
           <a class="a2-btn" href="fabric-zipper.html">View project →</a>
         </div>
       </section>
-      <section class="a2-slide" id="fabric-polyester" data-index="2" aria-label="Fabric Labs — Polyester" data-head="light" data-cap="light" data-strip="light" data-head-m="light" data-cap-m="light" data-strip-m="light" aria-hidden="true" style="--focal:50% 50%;--focal-d:50% 50%;--focal-m:50% 50%;--ar:1920/802;--arn:2.3940;--top:0;--scrim:0;--strip:0;--plate:0;--top-m:0;--scrim-m:0;--strip-m:0">
-        <video class="a2-media" muted loop playsinline preload="none" poster="assets/projects/fabric-polyester/polyester-core-dark.jpg" data-src="assets/projects/fabric-polyester/polyester-core-dark.mp4"></video>
+      <section class="a2-slide" id="fabric-polyester" data-index="2" aria-label="Fabric Labs — Polyester" data-head="light" data-cap="light" data-strip="light" data-head-m="light" data-cap-m="light" data-strip-m="light" aria-hidden="true" style="--focal:50% 50%;--focal-d:50% 50%;--focal-m:50% 50%;--ar:1920/802;--arn:2.3940;--n:2;--sar:16/9;--k:0.6990;--top:0;--scrim:0;--strip:0;--plate:0;--top-m:0;--scrim-m:0;--strip-m:0">
+        <div class="a2-group">
+          <video class="a2-media" muted loop playsinline preload="none" poster="assets/projects/fabric-polyester/polyester-core-dark.jpg" data-src="assets/projects/fabric-polyester/polyester-core-dark.mp4"></video>
+          <ul class="a2-sub">
+            <li><video class="a2-sub-media" muted loop playsinline preload="none" poster="assets/projects/fabric-polyester/polyester-no-kyc-white.jpg" data-src="assets/projects/fabric-polyester/polyester-no-kyc-white.mp4" aria-label="Fabric Labs — Polyester, No KYC, light: coin spheres rolling through a gate on white tracks"></video></li>
+            <li><video class="a2-sub-media" muted loop playsinline preload="none" poster="assets/projects/fabric-polyester/polyester-promo-xrp.jpg" data-src="assets/projects/fabric-polyester/polyester-promo-xrp.mp4" aria-label="Fabric Labs — Polyester, promo, XRP"></video></li>
+          </ul>
+        </div>
         <div class="a2-cap">
           <p class="a2-pos">CGI artist and visual director.</p>
           <p class="a2-num">03 / 11</p>
@@ -160,7 +172,15 @@
     <div class="a2-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </main>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
+    <button class="lightbox-close" id="lightbox-close">Close</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">←</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next">→</button>
+    <video id="lightbox-video" muted loop playsinline aria-hidden="true"></video>
+  </div>
+
   <script src="home-a2.js" defer></script>
+  <script src="home-a2-strip.js" defer></script>
   <script src="sound.js" defer></script>
 </body>
 </html>

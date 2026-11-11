@@ -14,6 +14,7 @@
   const N = slides.length;
 
   function ensureSrc(video, preloadValue = 'auto') {
+    if (reduced) return; // reduced motion: poster only, do not download the video
     if (video.dataset.src && !video.src) {
       video.src = video.dataset.src;
       video.preload = preloadValue;

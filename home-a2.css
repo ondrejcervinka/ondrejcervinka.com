@@ -105,7 +105,9 @@ body.home-a2 { --a2-strip-a: var(--strip, .3); }
   z-index: 20;
   background: transparent;
   border-bottom: none;
-  padding: 20px var(--pad);
+  /* right = --pad + the logo glyph's own inset (17px of the 48px image), so the
+     visible margins of the logo and "Contact" match */
+  padding: 20px calc(var(--pad) + 17px) 20px var(--pad);
 }
 
 .a2-header .logo {

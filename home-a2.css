@@ -624,15 +624,24 @@ body.home-a2.a2-framed {
 }
 
 .a2-framed .a2-stage {
+  container-type: size; /* media is sized in cqw / cqh of this area */
   top: var(--a2-frame-top);
   bottom: calc(var(--a2-strip-h) + var(--a2-cap-h));
   left: var(--a2-frame-x);
   right: var(--a2-frame-x);
 }
 
+/* Uncropped: every medium at its native ratio (--ar / --arn from build_home_a2.py),
+   as large as fits the area, centred. Width/height are explicit so the size is right
+   before the video has loaded (no jump). */
 .a2-framed .a2-media {
-  object-position: var(--focal-d, 50% 50%);
-  background: var(--line);
+  inset: 0;
+  margin: auto;
+  width: min(100cqw, 100cqh * var(--arn, 1.7778));
+  height: min(100cqh, 100cqw / var(--arn, 1.7778));
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: transparent;
 }
 
 .a2-framed .a2-slide::before,
@@ -681,12 +690,11 @@ body.home-a2.a2-framed {
     left: 20px;
     right: 20px;
     bottom: auto;
-    height: calc((100vw - 40px) * 1.25); /* 4:5 */
+    /* area for the media: at most 4:5 of the width, and never taller than what
+       leaves room for caption + strip on short screens */
+    height: min(calc((100vw - 40px) * 1.25), calc(100svh - var(--a2-frame-top) - 300px));
   }
 
-  .a2-framed .a2-media {
-    object-position: var(--focal-m, 50% 50%);
-  }
 
   .a2-framed .a2-cap,
   .a2-framed .a2-slide[data-plate] .a2-cap {

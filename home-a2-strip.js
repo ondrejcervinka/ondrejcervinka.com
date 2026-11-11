@@ -64,10 +64,11 @@
     observer.observe(slide, { attributes: true, attributeFilter: ['class'] });
   });
 
-  requestAnimationFrame(function () {
-    activeSlide = document.querySelector('.a2-slide.is-active');
-    if (activeSlide) activate(activeSlide);
-  });
+  // home-a2.js runs first (both deferred, in order) and has already activated the
+  // slide from the URL hash, so start right away. (requestAnimationFrame would not
+  // fire in a background / not yet painted tab.)
+  activeSlide = document.querySelector('.a2-slide.is-active');
+  if (activeSlide) activate(activeSlide);
 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {

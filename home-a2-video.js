@@ -42,7 +42,12 @@
       ov.style.width = video.offsetWidth + 'px';
       ov.style.height = video.offsetHeight + 'px';
     }
-    if (window.ResizeObserver) new ResizeObserver(place).observe(video);
+    if (window.ResizeObserver) {
+      // the video can also move without resizing (e.g. centred / bottom-aligned)
+      var ro = new ResizeObserver(place);
+      ro.observe(video);
+      ro.observe(host);
+    }
     window.addEventListener('resize', place);
     place();
 

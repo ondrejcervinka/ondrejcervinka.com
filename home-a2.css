@@ -813,3 +813,138 @@ body.home-a2.a2-framed {
     aspect-ratio: auto;
   }
 }
+
+/* ─── Fixed gap above the caption (stack + carousel; Air Bank split unchanged) ─────
+   The media group sits on the bottom of the area, --G above the caption (the
+   caption starts 16px under the area). Main medium shown at --arc (object-fit:
+   cover + --focal-c: 4:3 crop for Filorga / L'Oréal, native for the rest);
+   W = (area height - G - gap) / k. */
+.a2-framed {
+  --G: clamp(20px, 5.56vw, 96px); /* ≈ 80px at 1440 */
+}
+
+.a2-framed .a2-group--stack,
+.a2-framed .a2-group--carousel {
+  --hav: calc(100cqh - (var(--G) - 16px));
+  top: auto;
+  bottom: calc(var(--G) - 16px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.a2-framed .a2-group--stack {
+  /* width from the height left above the gap: main at its display ratio (--arc:
+     4:3 crop for Filorga / L'Oréal, native for the rest) + strip, no extra crop */
+  --w0: min(100cqw, (var(--hav) - var(--gap)) / var(--k, 1));
+  --tileh: calc((var(--w0) - (var(--n, 1) - 1) * var(--gap)) / var(--n, 1) / var(--sarn, 1.7778));
+  width: var(--w0);
+}
+
+.a2-framed .a2-group--stack .a2-media {
+  height: min(var(--w0) / var(--arc, var(--arn)), var(--hav) - var(--gap) - var(--tileh));
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: var(--focal-c, 50% 50%);
+}
+
+/* ─── R&D carousel ──────────────────────────────────────────────────────────── */
+.a2-framed .a2-group--carousel {
+  width: 100cqw;
+  height: var(--hav);
+  display: flex;
+  flex-direction: column;
+}
+
+.a2-carousel {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  touch-action: pan-y;
+}
+
+.a2-car-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.a2-car-track li {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease, visibility 0s linear .5s;
+}
+
+.a2-car-track li.is-current {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .5s ease, visibility 0s;
+}
+
+.a2-sub-media.a2-car-item {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: none;
+}
+
+.a2-car-ui {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 12px;
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--strip-fg-2, var(--muted));
+}
+
+.a2-car-prev,
+.a2-car-next {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--strip-line, rgba(17, 17, 16, .55));
+  background: transparent;
+  color: var(--strip-fg, var(--ink));
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background .2s ease;
+}
+
+.a2-car-prev:hover,
+.a2-car-next:hover {
+  background: rgba(17, 17, 16, .06);
+}
+
+.a2-car-prev:focus-visible,
+.a2-car-next:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a2-car-track li,
+  .a2-car-track li.is-current { transition: none; }
+}
+
+@media (max-width: 640px) {
+  /* mobile: caption starts 12px under the area */
+  .a2-framed { --G: 24px; }
+  .a2-framed .a2-group--stack,
+  .a2-framed .a2-group--carousel {
+    --hav: calc(100cqh - (var(--G) - 12px));
+    bottom: calc(var(--G) - 12px);
+  }
+}

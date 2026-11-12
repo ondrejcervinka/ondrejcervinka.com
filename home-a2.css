@@ -984,3 +984,12 @@ video.a2-vdim {
   margin: auto; /* centred in the area above the strip (flex column: free space split) */
   object-fit: contain;
 }
+
+/* Uncropped + no strip (EWC): the medium is centred in the whole media area */
+.a2-framed .a2-group--solo.a2-group--fit {
+  height: var(--hav);
+}
+
+.a2-framed .a2-group--solo.a2-group--fit .a2-media {
+  --mh: var(--hav);
+}

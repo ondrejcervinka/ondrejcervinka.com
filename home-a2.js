@@ -194,7 +194,8 @@
   document.addEventListener('keydown', (e) => {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     
-    const target = e.target;
+    // a synthetic keydown can target document / window (no classList): use <body>
+    const target = e.target instanceof Element ? e.target : document.body;
     if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) return;
 
     const isThumbFocused = target.classList.contains('a2-thumb');

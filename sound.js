@@ -93,15 +93,15 @@
       var btn = buttons[i];
       var iconOff = btn.querySelector('.icon-sound-off');
       var iconOn = btn.querySelector('.icon-sound-on');
+      // static name + state in aria-pressed (UX review 2026-11-12)
+      btn.setAttribute('aria-label', 'Sound');
 
       if (stateOn) {
         btn.setAttribute('aria-pressed', 'true');
-        btn.setAttribute('aria-label', 'Sound on');
         if (iconOff) iconOff.style.display = 'none';
         if (iconOn) iconOn.style.display = '';
       } else {
         btn.setAttribute('aria-pressed', 'false');
-        btn.setAttribute('aria-label', 'Sound off');
         if (iconOff) iconOff.style.display = '';
         if (iconOn) iconOn.style.display = 'none';
       }

@@ -323,13 +323,13 @@ body.home-a2 {
 
 /* Caption entrance animation */
 .a2-slide .a2-cap {
-  transform: translateY(12px);
+  /* fade only: no translate, so the caption keeps the same position on every slide
+     (it used to rise 12px on entry, which read as a jump; UX review 2026-11-12) */
   opacity: 0;
-  transition: transform .6s ease, opacity .6s ease;
+  transition: opacity .6s ease;
 }
 
 .a2-slide.is-active .a2-cap {
-  transform: translateY(0);
   opacity: 1;
   transition-delay: .15s;
 }
@@ -992,4 +992,24 @@ video.a2-vdim {
 
 .a2-framed .a2-group--solo.a2-group--fit .a2-media {
   --mh: var(--hav);
+}
+
+/* ─── UX review 2026-11-12 ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* room for the active thumbnail outline (2px + 2px offset) at the left edge,
+     also when a thumbnail snaps to the start */
+  .a2-framed .a2-thumbs,
+  .a2-thumbs {
+    padding-left: 6px;
+    margin-left: -6px;
+    scroll-padding-inline: 6px;
+  }
+
+  /* View project: ~44 px touch target without moving anything */
+  .a2-btn { position: relative; }
+  .a2-btn::before {
+    content: "";
+    position: absolute;
+    inset: -6px -2px;
+  }
 }

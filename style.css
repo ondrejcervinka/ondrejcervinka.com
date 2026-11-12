@@ -7,7 +7,7 @@ a { color: inherit; text-decoration: none; }
 :root {
   --bg:       #f7f6f3;
   --ink:      #111110;
-  --muted:    #767370;
+  --muted:    #73706d; /* 4.55:1 on --bg (was #767370, 4.36:1): UX review 2026-11-12 */
   --muted-label: #595856; /* lifted for WCAG AA at small sizes (≥4.5:1 on --bg) */
   --line:     #d8d6d2;
 
@@ -1034,4 +1034,34 @@ body.lightbox-open .footer-full {
 .chapter-grid .fig--cover video {
   aspect-ratio: var(--fit-ar, 16/9);
   object-fit: cover;
+}
+
+/* ─── UX review 2026-11-12: hit areas (visual unchanged, layout unchanged) ─────── */
+/* Lightbox Close: 44 px tall hit area; the text stays where it was (24px from top) */
+.lightbox-close {
+  top: 10px;
+  padding: 14px 0 15px;
+}
+
+@media (max-width: 640px) {
+  /* touch: extend the hit area of small links / buttons to ~44 px with a
+     transparent pseudo element (no padding, so nothing moves) */
+  .nav a::before,
+  .sound-toggle::before,
+  .footer-links-row a::before {
+    content: "";
+    position: absolute;
+  }
+  .nav a::before { inset: -13px -8px; }
+  .sound-toggle { position: relative; }
+  .sound-toggle::before { inset: -8px; }
+  .footer-links-row a { position: relative; }
+  .footer-links-row a::before { inset: -14px -8px; }
+  .footer-links-row a[aria-label]::before { inset: -14px; }
+}
+
+/* keyboard: video controls also show while something inside has focus */
+.video-wrap:focus-within .video-overlay {
+  opacity: 1;
+  pointer-events: auto;
 }

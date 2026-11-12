@@ -827,7 +827,7 @@ body.home-a2.a2-framed {
 }
 
 .a2-framed .a2-group--stack,
-.a2-framed .a2-group--carousel {
+.a2-framed .a2-group--grid {
   --hav: calc(100cqh - (var(--G) - 16px));
   top: auto;
   bottom: calc(var(--G) - 16px);
@@ -860,44 +860,30 @@ body.home-a2.a2-framed {
   aspect-ratio: auto;
 }
 
-/* ─── R&D carousel ──────────────────────────────────────────────────────────── */
-.a2-framed .a2-group--carousel {
-  width: 100cqw;
+/* ─── R&D: static grid 3 + 2 + 3 (as the old index card) ──────────────────────
+   Full width, fills the height above the fixed gap; three rows of one height,
+   6 columns: rows 1 and 3 = 3 tiles (span 2), row 2 = 2 wider tiles (span 3).
+   Tiles cover with a per-image focal point (--focal-c on the img). */
+.a2-framed .a2-group--grid {
   height: var(--hav);
-  display: flex;
-  flex-direction: column;
 }
 
-.a2-carousel {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  touch-action: pan-y;
-}
-
-.a2-car-track {
+.a2-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  position: absolute;
-  inset: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
 }
 
-.a2-car-track li {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s ease, visibility 0s linear .5s;
-}
+.a2-grid li { grid-column: span 2; min-height: 0; }
+.a2-grid li:nth-child(4),
+.a2-grid li:nth-child(5) { grid-column: span 3; }
 
-.a2-car-track li.is-current {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity .5s ease, visibility 0s;
-}
-
-.a2-sub-media.a2-car-item {
+.a2-grid .a2-sub-media {
   width: 100%;
   height: 100%;
   aspect-ratio: auto;
@@ -905,59 +891,12 @@ body.home-a2.a2-framed {
   object-position: var(--focal-c, 50% 50%);
 }
 
-.a2-car-ui {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding-top: 12px;
-  font-size: 12px;
-  letter-spacing: .06em;
-  color: var(--strip-fg-2, var(--muted));
-}
-
-.a2-car-prev,
-.a2-car-next {
-  appearance: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1.5px solid var(--strip-line, rgba(17, 17, 16, .55));
-  background: transparent;
-  color: var(--strip-fg, var(--ink));
-  font: inherit;
-  font-size: 14px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  transition: background .2s ease;
-}
-
-.a2-car-prev:hover,
-.a2-car-next:hover {
-  background: rgba(17, 17, 16, .06);
-}
-
-.a2-car-prev:focus-visible,
-.a2-car-next:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .a2-car-track li,
-  .a2-car-track li.is-current { transition: none; }
-}
-
 @media (max-width: 640px) {
   /* mobile: caption starts 12px under the area */
   .a2-framed { --G: 24px; }
   .a2-framed .a2-group--stack .a2-media { object-position: var(--focal-cm, var(--focal-c, 50% 50%)); }
   .a2-framed .a2-group--stack,
-  .a2-framed .a2-group--carousel {
+  .a2-framed .a2-group--grid {
     --hav: calc(100cqh - (var(--G) - 12px));
     bottom: calc(var(--G) - 12px);
   }

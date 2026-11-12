@@ -750,12 +750,18 @@ body.lightbox-open .footer-full {
   cursor: zoom-out;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  /* closed = hidden (not only transparent): children with pointer-events:auto
+     (video controls) must not catch clicks / taps; visibility switches after the
+     fade-out, immediately on open (UX review 2026-11-12, round 2) */
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .lightbox.is-open {
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0s;
 }
 
 .lightbox img,
@@ -927,15 +933,13 @@ body.lightbox-open .footer-full {
   bottom: 20px;
   left: 24px;
   right: 24px;
-}
-
-.video-overlay:has(.video-project-link) .video-timeline {
-  right: 172px;
+  /* pill, as on the homepage (was only applied next to a project link) */
   height: 38px;
   display: flex;
   align-items: center;
   cursor: pointer;
   pointer-events: auto;
+  touch-action: none;
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -943,6 +947,14 @@ body.lightbox-open .footer-full {
   border: 1.5px solid rgba(255,255,255,0.12);
   padding: 0 16px;
   transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.video-overlay:has(.video-project-link) .video-timeline {
+  right: 172px;
+}
+
+@media (max-width: 640px) {
+  .video-timeline { left: 12px; right: 12px; bottom: 12px; height: 32px; padding: 0 12px; }
 }
 
 .video-timeline:hover {
@@ -1064,4 +1076,13 @@ body.lightbox-open .footer-full {
 .video-wrap:focus-within .video-overlay {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* Hidden video controls never catch clicks / taps (UX review 2026-11-12, round 2):
+   the buttons / timeline have pointer-events:auto (and the replay button an inline
+   style), so they would stay clickable while invisible. Subpages: shown on hover /
+   focus; homepage: .a2-vctrl.is-shown. */
+.video-wrap:not(:hover):not(:focus-within) .video-overlay *,
+.a2-vctrl:not(.is-shown) * {
+  pointer-events: none !important;
 }

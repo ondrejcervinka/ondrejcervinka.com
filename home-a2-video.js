@@ -176,5 +176,10 @@
       }
     }).observe(s, { attributes: true, attributeFilter: ['class'] });
   });
-  new MutationObserver(replaceAll).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  // lightbox: re-place on open, hide its controls again on close
+  var lbCtrl = lbv ? ctrls[ctrls.length - 1] : null;
+  new MutationObserver(function () {
+    replaceAll();
+    if (lbCtrl && !document.body.classList.contains('lightbox-open')) lbCtrl.show(false);
+  }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();

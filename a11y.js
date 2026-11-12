@@ -2,7 +2,7 @@
    after the page scripts (timelines exist by then: inline scripts on the project
    pages, home-a2-video.js on the homepage).
    1. Video timeline (role="slider"): focusable, ArrowLeft / ArrowRight = -/+ 5 s,
-      Home / End; aria-valuenow follows. The keys never reach the homepage project
+      Home / End; aria-valuenow follows, aria-valuetext = "0:06 / 1:00". The keys never reach the homepage project
       switch (stopPropagation on the slider itself).
    2. Lightbox: on close, focus goes back to the element that opened it (or, if that
       element cannot take focus, focus leaves the hidden lightbox). */
@@ -20,10 +20,22 @@
     return prev && prev.tagName === 'VIDEO' ? prev : null;
   }
 
+  function clock(t) {
+    t = Math.max(0, Math.floor(t || 0));
+    var s = t % 60;
+    return Math.floor(t / 60) + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function setText(tl, video) {
+    if (!video.duration) return;
+    tl.setAttribute('aria-valuetext', clock(video.currentTime) + ' / ' + clock(video.duration));
+  }
+
   function setNow(tl, video) {
     if (!video.duration) return;
     var pct = video.currentTime / video.duration * 100;
     tl.setAttribute('aria-valuenow', String(Math.round(pct)));
+    setText(tl, video);
     var bar = tl.querySelector('.video-timeline-progress');
     if (bar) bar.style.width = pct + '%';
   }
@@ -32,6 +44,14 @@
     if (tl.dataset.kbd) return;
     tl.dataset.kbd = '1';
     tl.setAttribute('tabindex', '0');
+    var v0 = videoFor(tl);
+    if (v0) {
+      // time as text for screen readers ("0:06 / 1:00"), kept current while playing
+      ['timeupdate', 'loadedmetadata', 'seeked'].forEach(function (ev) {
+        v0.addEventListener(ev, function () { setText(tl, v0); });
+      });
+      setText(tl, v0);
+    }
     tl.addEventListener('keydown', function (e) {
       var video = videoFor(tl);
       if (!video || !video.duration) return;

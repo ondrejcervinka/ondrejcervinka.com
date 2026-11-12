@@ -356,7 +356,7 @@ body.home-a2 {
   flex: 1;
   min-width: 0;
   display: grid;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
+  grid-template-columns: repeat(13, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -610,8 +610,8 @@ body.home-a2 {
    scrims 0, set by tools/build_home_a2.py FRAMED). */
 body.home-a2.a2-framed {
   background: var(--bg);
-  /* strip height follows the thumbnail width: 11 columns between arrows */
-  --a2-thumb-h: calc((100vw - 2 * var(--pad) - 2 * 44px - 2 * 20px - 10 * 8px) / 11 * 0.625);
+  /* strip height follows the thumbnail width: 13 columns between arrows */
+  --a2-thumb-h: calc((100vw - 2 * var(--pad) - 2 * 44px - 2 * 20px - 12 * 8px) / 13 * 0.625);
   --a2-strip-h: calc(var(--a2-thumb-h) + 65px);
   --a2-frame-top: 96px;
   --a2-frame-x: 14.5vw;
@@ -860,6 +860,16 @@ body.home-a2.a2-framed {
   aspect-ratio: auto;
 }
 
+/* Main medium only, no strip (EWC): full width, as tall as fits above the gap,
+   never taller than the uncropped film (mobile: whole film, bottom-aligned). */
+.a2-framed .a2-group--solo {
+  height: auto;
+}
+
+.a2-framed .a2-group--solo .a2-media {
+  height: min(var(--hav), 100cqw / var(--arn, 1.7778));
+}
+
 /* ─── R&D: static grid 3 + 2 + 3 (as the old index card) ──────────────────────
    Full width, fills the height above the fixed gap; three rows of one height,
    6 columns: rows 1 and 3 = 3 tiles (span 2), row 2 = 2 wider tiles (span 3).
@@ -900,4 +910,62 @@ body.home-a2.a2-framed {
     --hav: calc(100cqh - (var(--G) - 12px));
     bottom: calc(var(--G) - 12px);
   }
+}
+
+/* ─── Video controls on the homepage (home-a2-video.js) ─────────────────────────
+   Same controls as the project pages (style.css .video-overlay / .video-ctrl-btn);
+   the overlay is placed over the video by JS and shown on hover / tap / focus.
+   Timeline = the pill of the project pages. */
+.a2-vctrl {
+  position: absolute;
+  inset: auto;
+  z-index: 2;
+}
+
+.a2-vctrl.is-shown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+video.a2-vdim {
+  filter: brightness(0.75);
+}
+
+.a2-framed .a2-group video.a2-media,
+#lightbox-video {
+  transition: filter 0.25s ease;
+}
+
+.a2-vctrl .video-timeline {
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: none;
+  background: rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  padding: 0 16px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.a2-vctrl .video-ctrl-btn {
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .a2-vctrl .video-ctrl-btn { width: 40px; height: 40px; }
+  .a2-vctrl .video-controls .video-ctrl-btn:last-child { left: calc(50% + 30px); }
+  .a2-vctrl .video-timeline { left: 10px; right: 10px; bottom: 10px; height: 32px; padding: 0 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a2-framed .a2-group video.a2-media,
+  #lightbox-video { transition: none; }
 }

@@ -814,11 +814,14 @@ body.home-a2.a2-framed {
   }
 }
 
-/* ─── Fixed gap above the caption (stack + carousel; Air Bank split unchanged) ─────
-   The media group sits on the bottom of the area, --G above the caption (the
-   caption starts 16px under the area). Main medium shown at --arc (object-fit:
-   cover + --focal-c: 4:3 crop for Filorga / L'Oréal, native for the rest);
-   W = (area height - G - gap) / k. */
+/* ─── Full-width group, fixed gap above the caption (Air Bank split unchanged) ────
+   Ondrej 2026-11-12 (round 2): every project is as wide as the caption row (= the
+   area, 100cqw). The group sits on the bottom of the area, --G above the caption
+   (the caption starts 16px under the area). The strip spans the full width (tiles
+   share it evenly, one height, cover); the main medium fills the width and only its
+   HEIGHT is cropped (object-fit: cover, focal --focal-c from build_home_a2.py).
+   Tiles keep their ratio unless that would leave the main medium less than
+   1 - --tile-max of the height; then they are cropped to that share too. */
 .a2-framed {
   --G: clamp(20px, 5.56vw, 96px); /* ≈ 80px at 1440 */
 }
@@ -828,23 +831,33 @@ body.home-a2.a2-framed {
   --hav: calc(100cqh - (var(--G) - 16px));
   top: auto;
   bottom: calc(var(--G) - 16px);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  transform: none;
+  width: 100cqw;
 }
 
 .a2-framed .a2-group--stack {
-  /* width from the height left above the gap: main at its display ratio (--arc:
-     4:3 crop for Filorga / L'Oréal, native for the rest) + strip, no extra crop */
-  --w0: min(100cqw, (var(--hav) - var(--gap)) / var(--k, 1));
-  --tileh: calc((var(--w0) - (var(--n, 1) - 1) * var(--gap)) / var(--n, 1) / var(--sarn, 1.7778));
-  width: var(--w0);
+  --tile-max: .36;
+  --tileh: min((100cqw - (var(--n, 1) - 1) * var(--gap)) / var(--n, 1) / var(--sarn, 1.7778),
+               (var(--hav) - var(--gap)) * var(--tile-max));
+  height: var(--hav);
+  display: flex;
+  flex-direction: column;
 }
 
 .a2-framed .a2-group--stack .a2-media {
-  height: min(var(--w0) / var(--arc, var(--arn)), var(--hav) - var(--gap) - var(--tileh));
+  flex: none;
+  width: 100%;
+  height: calc(var(--hav) - var(--gap) - var(--tileh));
   aspect-ratio: auto;
   object-fit: cover;
   object-position: var(--focal-c, 50% 50%);
+}
+
+.a2-framed .a2-group--stack .a2-sub-media,
+.a2-framed .a2-group--stack .a2-sub-empty {
+  height: var(--tileh);
+  aspect-ratio: auto;
 }
 
 /* ─── R&D carousel ──────────────────────────────────────────────────────────── */
@@ -888,8 +901,8 @@ body.home-a2.a2-framed {
   width: 100%;
   height: 100%;
   aspect-ratio: auto;
-  object-fit: contain;
-  background: none;
+  object-fit: cover;
+  object-position: var(--focal-c, 50% 50%);
 }
 
 .a2-car-ui {
@@ -942,6 +955,7 @@ body.home-a2.a2-framed {
 @media (max-width: 640px) {
   /* mobile: caption starts 12px under the area */
   .a2-framed { --G: 24px; }
+  .a2-framed .a2-group--stack .a2-media { object-position: var(--focal-cm, var(--focal-c, 50% 50%)); }
   .a2-framed .a2-group--stack,
   .a2-framed .a2-group--carousel {
     --hav: calc(100cqh - (var(--G) - 12px));

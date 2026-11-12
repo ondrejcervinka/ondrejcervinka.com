@@ -973,13 +973,14 @@ video.a2-vdim {
 /* ─── Uncropped main medium (opt-in per slide: UNCROPPED in build_home_a2.py) ─────
    Same layout (full-width group, full-width strip, fixed gap above the caption),
    but the main medium is shown whole at its native ratio: as large as fits the
-   height left above the strip and the group width, centred horizontally and sitting
-   one --gap above the strip. Leftover space stays page background. */
+   height left above the strip and the group width, centred horizontally and
+   vertically in that area (top of the media area .. strip top minus --gap).
+   Leftover space stays page background. */
 .a2-framed .a2-group--fit .a2-media {
   --mh: calc(var(--hav) - var(--gap) - var(--tileh));
   width: min(100%, var(--mh) * var(--arn, 1.7778));
   height: auto;
   aspect-ratio: var(--ar);
-  margin: auto auto 0;
+  margin: auto; /* centred in the area above the strip (flex column: free space split) */
   object-fit: contain;
 }

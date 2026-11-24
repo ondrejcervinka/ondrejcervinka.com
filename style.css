@@ -1048,6 +1048,35 @@ body.lightbox-open .footer-full {
   object-fit: cover;
 }
 
+/* Portrait film (9:16, e.g. ŠKODA FOOH Brno; build_pages.py hero "fit": "portrait"):
+   whole and centred, as tall as the viewport allows under the header; the wrap shrinks
+   to the video so the controls sit on the film itself. Mobile: full content width. */
+.project-hero.project-hero--portrait {
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-hero.project-hero--portrait video {
+  width: auto;
+  max-width: 100%;
+  height: min(calc(100vh - 120px), 1280px);
+  aspect-ratio: 9/16;
+  object-fit: contain;
+}
+
+/* Portrait stills / videos in a gallery row (pages.json group "portrait": true): 9:16, uncropped */
+.chapter-grid--portrait .fig img,
+.chapter-grid--portrait .fig video {
+  aspect-ratio: 9/16;
+}
+
+@media (max-width: 640px) {
+  .project-hero.project-hero--portrait { width: auto; }
+  .project-hero.project-hero--portrait video { width: 100%; height: auto; }
+}
+
 /* ─── UX review 2026-11-12: hit areas (visual unchanged, layout unchanged) ─────── */
 /* Lightbox Close: 44 px tall hit area; the text stays where it was (24px from top) */
 .lightbox-close {

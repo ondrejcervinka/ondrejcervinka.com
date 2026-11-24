@@ -356,7 +356,7 @@ body.home-a2 {
   flex: 1;
   min-width: 0;
   display: grid;
-  grid-template-columns: repeat(13, minmax(0, 1fr));
+  grid-template-columns: repeat(14, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -610,8 +610,8 @@ body.home-a2 {
    scrims 0, set by tools/build_home_a2.py FRAMED). */
 body.home-a2.a2-framed {
   background: var(--bg);
-  /* strip height follows the thumbnail width: 13 columns between arrows */
-  --a2-thumb-h: calc((100vw - 2 * var(--pad) - 2 * 44px - 2 * 20px - 12 * 8px) / 13 * 0.625);
+  /* strip height follows the thumbnail width: 14 columns between arrows */
+  --a2-thumb-h: calc((100vw - 2 * var(--pad) - 2 * 44px - 2 * 20px - 13 * 8px) / 14 * 0.625);
   --a2-strip-h: calc(var(--a2-thumb-h) + 65px);
   --a2-frame-top: 96px;
   --a2-frame-x: 14.5vw;
@@ -992,6 +992,50 @@ video.a2-vdim {
 
 .a2-framed .a2-group--solo.a2-group--fit .a2-media {
   --mh: var(--hav);
+}
+
+/* ─── Row layout (portrait films, e.g. ŠKODA FOOH Brno; LAYOUT "row") ─────────
+   The 9:16 main video and its 9:16 stills side by side, all the same height, uncropped
+   (every tile has the media's own ratio), centred, on the bottom of the area like the
+   stack. Desktop: one row of 4. Mobile: 2 x 2. The <ul> is display: contents so the
+   video and the stills are siblings in one grid. */
+.a2-framed .a2-group--row {
+  --hav: calc(100cqh - (var(--G) - 16px));
+  --cols: 4;
+  --rows: 1;
+  --rh: min((var(--hav) - (var(--rows) - 1) * var(--gap)) / var(--rows),
+            (100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols) / var(--arn, .5625));
+  top: auto;
+  bottom: calc(var(--G) - 16px);
+  left: 0;
+  transform: none;
+  width: 100cqw;
+  height: var(--hav);
+  display: grid;
+  grid-template-columns: repeat(var(--cols), calc(var(--rh) * var(--arn, .5625)));
+  grid-auto-rows: var(--rh);
+  justify-content: center;
+  align-content: end;
+  gap: var(--gap);
+}
+
+.a2-framed .a2-group--row .a2-sub { display: contents; }
+
+.a2-framed .a2-group--row .a2-media,
+.a2-framed .a2-group--row .a2-sub-media {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .a2-framed .a2-group--row {
+    --hav: calc(100cqh - (var(--G) - 12px));
+    --cols: 2;
+    --rows: 2;
+    bottom: calc(var(--G) - 12px);
+  }
 }
 
 /* ─── UX review 2026-11-12 ─────────────────────────────────────────────────── */
